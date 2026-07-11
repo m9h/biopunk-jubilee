@@ -71,11 +71,15 @@ as much as against it:
 And the tradition is not history; it is the live frontier. The **CHI 2026 Best Paper** went to a
 CBA team --- led by Ilan Moyer, author of the *gestalt* motion-control framework --- for a
 cantilevered DeltaXY mechanism enabling narrow, deep, "rackable" machines, demonstrated as a
-bookshelf 3D printer [@moyer2026deltaxy]. It is excellent work. It is also, tellingly, a paper
-about **form factor and spatial efficiency**, at an HCI venue, reporting no positioning
-repeatability. **The gap this proposal identifies is therefore not anyone's lapse. It is a
-structural property of a research programme that teaches machines to sense the world, and has
-never been asked to make them sense themselves.**
+bookshelf 3D printer [@moyer2026deltaxy]. It is excellent work, and its stated contribution is
+telling: the metric it advances is **lateral spatial efficiency** --- how well a machine uses floor
+space --- presented at an HCI venue. *(We were unable to obtain the full text; the project page
+reports no positioning figures, but we make no claim about the paper's contents beyond its
+abstract and project page.)*
+
+**The gap this proposal identifies is therefore not anyone's lapse. It is a structural property
+of a research programme that teaches machines to sense the world, and has never been asked to
+make them sense themselves.**
 
 **This is the correct frame for every criticism in this proposal.** Jubilee contains no
 characterisation section not through oversight but because *it is not a metrology artefact and

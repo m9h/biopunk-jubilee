@@ -3,104 +3,158 @@ category: research
 section: background
 weight: 23
 status: draft
-title: "The Answer, Already Written Twice"
+title: "The Answer, Already Written Twice --- and the Delta That Remains"
 slide_summary: |
-  ### Two threads converge here. They have already met.
+  ### The diagnosis is not ours. It is theirs, and it is defended.
 
-  - **Tandem** (CHI '24, **Peek**): *"explicit assertions... to flag mismatches between
-    physical and digital states."* Pointed at a milling machine.
-  - **Jake Read's line** (CBA, **Gershenfeld**): machines that measure themselves.
+  **"The End of GCode"** --- Read, PhD, MIT, May 2026, 512 pp.
+  Committee: Gershenfeld, **Nadya Peek**, Seppala (NIST).
 
-  ### MAXL (SCF '23) --- Read, **Peek**, Gershenfeld
+  > *"GCode only permits **one-way data transfer**"* → a **feedback-native** architecture
+  > for *"machines that can think about what they are doing."*
 
-  Time-synchronised trajectories across heterogeneous actuators **and sensors**.
-  One demo is synchronised accelerometer *retrieval*.
+  ### So what is left for us?
 
-  The clock is shared. The sensors are plumbed. **Nobody wrote the `assert`.**
+  Read fits models of **machine physics**. We must assert **experimental semantics** ---
+  *did the tool seat? which tip is on? where is the meniscus?*
+
+  **A model of extrusion pressure cannot tell you that you picked up the P20.**
+
+  And `science-jubilee` still drives the lab machines over **one-way G-code**.
 ---
 
-The strongest argument for this proposal is that it is not really a new idea. It is the
-conjunction of two lines of work that the same people have already published, and that have
-already once appeared in the same paper.
+The strongest argument for this proposal is also, at first sight, the strongest argument
+against it: **the diagnosis is not ours.** It belongs to the very group we are addressing, it has
+been defended as a doctoral thesis, and Nadya Peek --- author of both Jubilee and Tandem --- sat on
+the committee. We therefore state the prior work at its full strength before claiming any delta,
+because a proposal that pretended otherwise would deserve to fail.
 
 ## Thread one: Tandem, and the assertion
 
-Tandem [@oleary2024tandem] addresses a problem in experimental digital fabrication: workflows
-are increasingly elaborate and consequently increasingly irreproducible. Its response is to
-encode an entire end-to-end process as a computational-notebook program that another person can
-execute to physically recreate the work.
+Tandem [@oleary2024tandem] encodes a fabrication workflow as a computational-notebook program
+another person can execute to physically recreate the work. It exchanges data with CAD and CAM,
+projects augmented-reality interfaces for manual steps, drives machines directly, and ---
+decisively --- supports **explicit assertions in code to flag potential mismatches between physical
+and digital state.**
 
-Four capabilities distinguish it from a plain Jupyter notebook driving a machine. It exchanges
-data with CAD and CAM, so design intent stays live in the program. It projects augmented-reality
-interfaces onto the machine to guide the manual interventions real workflows always contain. It
-directly controls machines. And --- decisively for us --- it supports **explicit assertions in
-code to flag potential mismatches between physical and digital state.**
+Its demonstration is two-sided CNC milling: machine one face, flip the workpiece, then *prove*
+the datum survived. That is the canonical physical--digital divergence, and it is structurally
+identical to a tool change: an object is decoupled from its reference frame, re-coupled, and
+thereafter trusted.
 
-Its demonstration is two-sided CNC milling: machine one face, flip the workpiece, and then
-*prove* the datum survived the flip. This is the canonical instance of physical--digital
-divergence, and it is structurally identical to a tool change. In both cases a physical object is
-decoupled from its reference frame, re-coupled, and thereafter trusted.
+## Thread two: Read, and the end of one-way control
 
-## Thread two: Jake Read, and the machine that measures itself
+Running in parallel at MIT's Center for Bits and Atoms is a body of work whose thesis --- now
+literally a thesis --- is that **machines should observe themselves rather than assume their
+state.**
 
-Running in parallel at MIT's Center for Bits and Atoms is a body of work whose thesis is that
-**machines should observe their own state rather than assume it.**
+*The End of GCode: Intelligent Modular Machines with Model Based Control* [@read2026endofgcode]
+is a 512-page dissertation, submitted May 2026, supervised by Neil Gershenfeld, with **Nadya Peek
+(UW) and Jonathan Seppala (NIST) on the committee.** Its opening diagnosis is one this proposal
+would otherwise have had to argue for:
 
-The clearest artefact is *Online Measurement for Parameter Discovery in Fused Filament
-Fabrication* [@read2024online]. An extruder is instrumented with a load cell, a filament encoder,
-a Hall-effect diameter sensor, and a thermocouple; it fits a pressure function $P = f(T, Q)$ *in
-situ*; and it then **derives** its own process parameters instead of being told them --- succeeding,
-in the authors' words, "even in materials that we had never printed before." That is a machine
-that measures itself, built with cheap sensors, on a commodity motion platform. It is the
-existence proof that everything this proposal asks for is achievable.
+> "Innovation in this domain is hampered by the pervasive use of GCode: an antiquated interface
+> between machine users and machine controllers. **GCode only permits one-way data transfer** and
+> prevents us from smoothly crossing the boundary between high- and low-level planning and
+> control tasks."
 
-The programme states its own diagnosis explicitly. *Computational Metrology for Materials*
-[@warren2025metrology], written with NIST, observes that R&D "is continuously hindered by the
-lack of data," that characterisation workflows are "proprietary… often poorly integrated," and
-proposes to "merge the metrological and control aspects of the entire system" by modelling "each
-of the sensors onboard a machine… as well as the function of the machine itself." And Read's
-thesis proposal, *The End of GCode* [@read2024endofgcode], puts the indictment in one line:
-machines should stop "blindly executing pre-generated instructions" and instead "measure their
-own performance."
+Its remedy is a **feedback-native control architecture** for "machines that can think about what
+they are doing," delivered in three layers: **OSAP**, a network providing low-latency messaging,
+clock synchronisation, and device discovery across heterogeneous devices; **PIPES**, combining
+dataflow for real-time operation with scripting for machine tasking; and **MAXL**, motion control
+as dataflow modules. On top of these it builds machines that "**learn their own constraints** by
+fitting models of their dynamics," replaces feed-forward parameter tuning with feedback from
+fitted physics, and --- explicitly --- "**monitor[s] errors**," so that "machine controllers are no
+longer black boxes."
 
-**The verification gap is therefore not an outside criticism of this lineage. It is a deficiency
-the lineage has named, in print, itself.**
+Supporting this are two published results we take as existence proofs. *Online Measurement for
+Parameter Discovery in FFF* [@read2024online] instruments an extruder with a load cell, filament
+encoder, Hall-effect diameter sensor and thermocouple, fits $P = f(T, Q)$ *in situ*, and
+**derives** its process parameters rather than being told them --- succeeding "even in materials
+that we had never printed before." And *Computational Metrology for Materials*
+[@warren2025metrology], written with NIST, states the field's deficiency outright: R&D "is
+continuously hindered by the lack of data," and the remedy is to "merge the metrological and
+control aspects of the entire system."
 
-## The two threads have already met, and stopped one step short
+## The threads have already met --- twice, formally
 
-In 2023, Jake Read, **Nadya Peek**, and Neil Gershenfeld jointly published **MAXL: Distributed
-Trajectories for Modular Motion** [@read2023maxl] --- CBA and the UW Machine Agency, on the same
-paper. It is a modular control architecture for "synchronous control of heterogeneous
-components," and its four contributions include a distributed trajectory object, high- and
-low-level APIs, and a time-synchronisation algorithm.
+In 2023, **Read, Peek, and Gershenfeld** jointly published **MAXL** [@read2023maxl]: CBA and the
+UW Machine Agency on one paper, building time-synchronised trajectories across heterogeneous
+actuators *and sensors*, with one demonstration being time-synchronised data **retrieval** from
+an accelerometer. And in 2026, **Peek sat on the committee** that approved *The End of GCode*.
 
-Read what it demonstrates. One application is time-synchronised data *output* (light-painting).
-The other is time-synchronised data ***retrieval*** --- from an accelerometer. **MAXL already
-solves the hard part: getting sensor data and machine motion onto a common timebase, across
-heterogeneous hardware.**
+**There is no intellectual disagreement to resolve here.** The people who built Jubilee and the
+people who built the feedback-native control architecture are the same community, they have
+co-authored, and they have examined each other's work. What has not happened is that any of it
+has been pointed at a laboratory machine.
 
-And then it stops. The trajectory object has "one author and multiple readers." Sensors are
-*readers*. Nothing in the architecture allows a sensor reading to **contradict** the trajectory,
-because the architecture defines **no predicate over the data it so carefully synchronises**.
+## The delta: what remains genuinely undone
 
-> **This is the gap, stated with precision: MAXL delivers synchronisation without assertion.**
-> The clock is shared. The sensors are plumbed. Nobody wrote the `assert`.
+We must be precise, because the prior work is strong and the naive version of our contribution is
+already taken.
 
-## What is conspicuously absent
+| | Read's thesis / CBA | This proposal |
+|---|---|---|
+| **What is observed** | **Machine physics** --- nozzle pressure, cutting force, motion constraints, material dynamics | **Experimental state** --- tool seated? which tip? where is the meniscus? did the labware move? |
+| **Form of knowledge** | Continuous **models fitted** to dynamics | Discrete **predicates asserted** over the world |
+| **Failure it catches** | Process error, mis-tuned parameters, model divergence | Silent corruption of a *sample* |
+| **Domain** | Fabrication: FFF printing, milling | Wet biology: pipetting, imaging, incubation |
+| **Machine** | Modified state-of-the-art printer; a purpose-built mill | Jubilee, DuckBot, FungiBot |
 
-We searched the CBA corpus --- the news archive from 2022 to 2026, and the full papers index ---
-for work on tool changers, tool-seating verification, liquid handling, self-driving laboratories,
-or reproducibility in fabrication.
+The distinction is not cosmetic. **A fitted model of extrusion pressure cannot tell you that you
+picked up the P20 instead of the P300.** No amount of dynamics identification reveals that a
+tool's kinematic balls failed to seat, that a plate is 1 mm out of its nest, or where a meniscus
+is. Read's machines learn their own *physics*; a laboratory machine must also assert its own
+*semantics* --- discrete, protocol-level facts about an experiment that has no equation of motion.
 
-**There is none.** Not one paper. The closest adjacents are the CBA/NIST Open Metrology workshop
-and a 2019 melt-electrowriting paper that performs *post-hoc* machine-learning metrology on a
-fabricated scaffold --- verification of the *product*, offline, not of the *machine*, in-process.
+Three further gaps are simply unoccupied by either thread:
 
-That absence is not a hole in our search. **It is the finding.** The lineage that produced
-Jubilee's motion architecture possesses the sensing substrate (MAXL), the self-characterisation
-technique (the instrumented extruder), the assertion abstraction (Tandem), and an explicit,
-published account of why measurement matters (Computational Metrology). It has assembled every
-component of the answer. **It has simply never pointed them at a laboratory machine.**
+1. **The lab sensors do not exist.** No pressure-based liquid-level detection, no seating
+   assertion, no tool identity --- in Read's work, in Tandem, or in `science-jubilee`.
+2. **The toolchanger has never been characterised.** Not by CBA, not by the Machine Agency, not
+   by anyone (Section 40).
+3. **And, most bluntly: the lab machines are still on one-way G-code.** `science-jubilee` drives
+   DuckBot and FungiBot through a synchronous G-code-over-HTTP shim --- *the precise artefact a
+   512-page MIT dissertation, examined by their own principal investigator, is titled against.*
+   The cure was developed, defended, and never administered to the patient in the next room.
 
-This proposal is the next paper in a sequence that already has four entries --- and we can say so
-with citations rather than assertion.
+## A worked example of the cure not administered: FungiBot
+
+The abstract form of this argument is easy to wave away, so here is a concrete instance from
+inside the same laboratory.
+
+**FungiBot** [@luo2025fungibot] extrudes *Mycofluid* --- a mycelium-inoculated paste made from
+spent coffee grounds. That is about as unruly a feedstock as extrusion has: a living,
+particulate, biologically active medium whose rheology varies with grind, moisture, inoculation
+density, and how long it has been sitting. Every one of those varies batch to batch. The machine
+is told its extrusion parameters in advance, and extrudes.
+
+Now read Read's contribution again [@read2024online]. An instrumented extruder fits a pressure
+model *in situ* and **derives** its own flow parameters --- and the paper's own headline claim is
+that it succeeds *"even in materials that we had never printed before."*
+
+**That method was built for exactly FungiBot's problem, by the same research community, and
+FungiBot does not use it.** A living paste with batch-variable rheology is the single strongest
+case in the entire corpus for online parameter discovery, and it is being printed feed-forward.
+This is not a criticism of FungiBot, which is a fine piece of work with a different research
+question. It is the clearest available illustration of the thesis of this section: **the cure
+exists, it was developed next door, and nobody carried it across the hall.**
+
+## What is conspicuously absent from the whole corpus
+
+We swept the CBA record --- the news archive 2022--2026, the full papers index, and the theses list
+--- for tool changers, tool-seating verification, liquid handling, self-driving laboratories, or
+reproducibility in fabrication. **There is none.** The nearest adjacents are the CBA/NIST Open
+Metrology workshop and a 2019 melt-electrowriting paper doing *post-hoc* machine-learning
+metrology on a finished scaffold --- verification of the **product**, offline, not of the
+**machine**, in-process.
+
+That absence is not a hole in our search. **It is the finding.** This community has assembled
+every component of the answer --- the network and clock (OSAP), the dataflow substrate (PIPES,
+MAXL), the self-characterisation technique (the instrumented extruder), the assertion abstraction
+(Tandem), and a published argument for why measurement matters. **It has simply never pointed
+them at a laboratory machine, and the machines it did point at biology cannot tell you whether
+they worked.**
+
+This proposal is therefore not a new idea. It is the execution of a conclusion this community has
+already reached, in the one domain where the cost of not reaching it is a corrupted experiment.

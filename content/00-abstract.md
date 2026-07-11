@@ -29,20 +29,27 @@ resulting failure is therefore silent. A mis-seated tool does not raise an error
 a plate of quietly corrupted data. This is the precise failure mode that renders unattended,
 multi-day biological assays --- the platform's central use case --- untrustworthy.
 
-The remedy already exists, and not in one place but in two. **Tandem**, presented at CHI 2024,
-is a computational-notebook environment whose central contribution is *explicit assertions that
-flag mismatches between physical and digital state*, demonstrated on two-sided CNC milling. In
-parallel, a body of work at MIT's Center for Bits and Atoms argues that machines should measure
-themselves rather than assume their state --- and demonstrates it with an instrumented extruder
-that derives its own process parameters in situ.
+**The diagnosis is not ours, and we do not claim it.** It belongs to the community we address.
+*The End of GCode* --- Jake Read's 2026 MIT dissertation, supervised by Gershenfeld with **Nadya
+Peek on the committee** --- opens by observing that "GCode only permits one-way data transfer," and
+answers with a *feedback-native* control architecture (OSAP, PIPES, MAXL) for "machines that can
+think about what they are doing," which "learn their own constraints" and "monitor errors."
+Alongside it, **Tandem** (CHI 2024, also Peek) contributes the missing abstraction: *explicit
+assertions that flag mismatches between physical and digital state.* The two lines have already
+met formally --- Read, Peek and Gershenfeld co-authored MAXL in 2023.
 
-The two lines have already met. In 2023, Read, **Peek**, and Gershenfeld jointly published
-**MAXL**, a distributed control architecture that puts motion and *sensor data* on a common
-timebase across heterogeneous hardware --- one of its demonstrations is time-synchronised
-retrieval from an accelerometer. It solves the hard part and then stops: its trajectory object
-has "one author and multiple readers," and the architecture defines **no predicate** over the
-data it so carefully synchronises. **MAXL delivers synchronisation without assertion.** The
-clock is shared, the sensors are plumbed, and nobody wrote the `assert`.
+**And none of it has been pointed at a laboratory machine.** `science-jubilee` still drives
+DuckBot and FungiBot through a synchronous, one-way G-code-over-HTTP shim --- precisely the
+artefact a 512-page MIT dissertation, examined by their own principal investigator, is titled
+against. The cure was developed, defended, and never administered to the patient in the next
+room.
+
+Our delta is correspondingly specific. Read's machines fit continuous **models of their own
+physics** --- nozzle pressure, cutting force, dynamics. A laboratory machine must additionally
+assert its own **semantics**: discrete, protocol-level facts about an experiment that has no
+equation of motion. *A fitted model of extrusion pressure cannot tell you that you picked up the
+P20 instead of the P300*, that a tool's kinematic balls failed to seat, that a plate is a
+millimetre out of its nest, or where a meniscus is.
 
 We propose that integration, in three parts. **First**, a transport rewrite: replace the
 blocking HTTP shim with a Duet object-model subscription that delivers a genuine

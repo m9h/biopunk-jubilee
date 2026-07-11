@@ -45,21 +45,29 @@ tension, a completion handshake, a seating switch that raises a catchable except
 an emergency stop, a pressure sensor in the pipette's air path, a calibration curve per reagent,
 and an assertion layer.
 
-**And every component of the answer has already been built by the people who would receive this
-proposal.** Tandem contributes the assertion abstraction, and was pointed at a milling machine
-while the laboratory robot down the hall listed "additional error detection and failsafes" as its
-principal unmet need [@oleary2024tandem]. Jake Read's instrumented extruder contributes the
-self-measurement technique, deriving its own process parameters in situ rather than trusting them
-[@read2024online]. *Computational Metrology for Materials* contributes the argument, in print,
-from CBA and NIST, that this is the field's missing layer [@warren2025metrology]. And **MAXL ---
-co-authored by Read, Peek, and Gershenfeld --- contributes the substrate**, synchronising sensor
-data and machine motion across heterogeneous hardware, and then declining to define a single
-predicate over the data it synchronises [@read2023maxl].
+**And the answer has already been built by the people who would receive this proposal.** We want
+to be scrupulous about this, because the naive version of our contribution is already taken.
 
-**The clock is shared. The sensors are plumbed. The abstraction is published. Nobody wrote the
-`assert`.** The most valuable work available here is therefore not to invent anything. It is to
-connect four artefacts this community has already built, point them at a laboratory machine
-for the first time, and then --- finally --- measure the result.
+*The End of GCode* [@read2026endofgcode] --- 512 pages, MIT, May 2026, supervised by Gershenfeld,
+**with Nadya Peek on the committee** --- diagnoses the disease in its first paragraph ("GCode only
+permits one-way data transfer") and prescribes the cure: a feedback-native architecture for
+machines that "learn their own constraints" and "monitor errors," so that "machine controllers
+are no longer black boxes." Tandem [@oleary2024tandem] contributes the assertion abstraction.
+The instrumented extruder [@read2024online] proves self-measurement works with cheap sensors.
+*Computational Metrology for Materials* [@warren2025metrology], with NIST, argues in print that
+this is the field's missing layer. And MAXL [@read2023maxl] --- Read, **Peek**, and Gershenfeld ---
+put motion and sensor data on a common clock.
+
+**There is no intellectual disagreement left to have. There is only an application that was never
+made.** The lab machines are still on one-way G-code. The cure was developed, defended, and never
+administered to the patient in the next room.
+
+What genuinely remains is narrower than it first appears, and it is worth naming exactly. Read's
+machines fit continuous **models of their own physics**. A laboratory machine must also assert its
+own **semantics** --- discrete facts about an experiment that has no equation of motion. *No
+identification of nozzle dynamics will ever tell you that you picked up the P20 instead of the
+P300.* That gap, the three sensors that close it, and the tool-change measurement nobody has
+taken: that is the whole of what we propose.
 
 It is worth being precise about whose gap this is, because the uncharitable reading is also the
 wrong one. This lineage is not indifferent to measurement: CBA's machine-building class devotes

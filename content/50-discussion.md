@@ -172,6 +172,19 @@ rather than a modification of this one.
 
 ## Threats to validity
 
+**"Read's thesis already does this."** This is the strongest objection and it deserves the first
+answer. *The End of GCode* [@read2026endofgcode] genuinely anticipates the control-architecture
+half of this proposal, and we say so in Section 23 rather than burying it. But its feedback loop
+closes over **machine physics** --- pressure, force, dynamics --- via continuous models fitted to the
+machine's own behaviour. A laboratory protocol additionally requires **semantic** assertions:
+discrete, protocol-level facts with no equation of motion behind them. No identification of
+nozzle dynamics reveals that a tool's kinematic balls failed to seat, that the P20 is mounted
+where the protocol expects a P300, that a plate is a millimetre out of its nest, or where a
+meniscus sits. Those require *sensors that do not exist in either lineage*, and a predicate
+layer that Tandem supplies and MAXL does not. The honest framing of this proposal is **execution,
+not invention** --- and the fact that the diagnosis is already defended at MIT, with Jubilee's own
+author on the committee, is an argument *for* the work rather than against it.
+
 **The seating transient may defeat in-line pressure sensing.** Press-fit tip attachment drives
 force through the air column the sensor watches. Our mitigation is to gate and tare the sensor
 across attachment, and WP4 validates this in week one precisely because a negative result
