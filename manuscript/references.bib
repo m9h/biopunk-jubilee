@@ -45,6 +45,73 @@
             antecedent of the Jubilee programme: modular, composable machine building}
 }
 
+@inproceedings{read2023maxl,
+  author    = {Read, Jake Robert and Peek, Nadya and Gershenfeld, Neil},
+  title     = {{MAXL}: Distributed Trajectories for Modular Motion},
+  booktitle = {Proceedings of the 8th ACM Symposium on Computational Fabrication (SCF '23)},
+  pages     = {1--11},
+  year      = {2023},
+  publisher = {ACM},
+  doi       = {10.1145/3623263.3623362},
+  note      = {\textbf{The bridge already exists.} Co-authored by CBA (Read, Gershenfeld) and the
+               UW Machine Agency (Peek). Builds a time-synchronised, distributed trajectory object
+               across heterogeneous actuators \emph{and sensors} --- one demo is time-synchronised
+               data \emph{retrieval} from an accelerometer. But the trajectory object has
+               ``one author and multiple readers,'' and the architecture defines \emph{no
+               predicate} over the sensor data it so carefully synchronises. Synchronisation
+               without assertion: precisely the substrate this proposal would sit on, and
+               precisely the step it stops short of}
+}
+
+@article{read2024online,
+  author  = {Read, Jake Robert and Seppala, Jonathan E. and Tourlomousis, Filippos and
+             Warren, James A. and Bakker, Nicole and Gershenfeld, Neil},
+  title   = {Online Measurement for Parameter Discovery in Fused Filament Fabrication},
+  journal = {Integrating Materials and Manufacturing Innovation},
+  volume  = {13},
+  number  = {2},
+  pages   = {541--554},
+  year    = {2024},
+  doi     = {10.1007/s40192-024-00350-w},
+  note    = {Open access, PMC11636983. The existence proof. An instrumented extruder --- load cell,
+             filament encoder, Hall-effect diameter sensor, thermocouple --- fits
+             $P = f(T, Q)$ \emph{in situ} and \textbf{derives} its process parameters rather than
+             trusting them, succeeding ``even in materials that we had never printed before.''
+             A machine observing itself, built at CBA, with cheap sensors, on a commodity
+             platform --- and never pointed at a laboratory tool}
+}
+
+@article{warren2025metrology,
+  author  = {Warren, James and Read, Jake and Seppala, Jonathan and Strand, Erik and
+             Gershenfeld, Neil},
+  title   = {Computational Metrology for Materials},
+  journal = {Journal of Materials Research},
+  volume  = {40},
+  number  = {15},
+  pages   = {2197--2203},
+  year    = {2025},
+  doi     = {10.1557/s43578-025-01651-2},
+  note    = {Open access, PMC12367839. CBA and NIST naming the deficiency themselves:
+             R\&D ``is continuously hindered by the lack of data''; workflows are
+             ``proprietary\ldots often poorly integrated.'' Their remedy is to
+             ``merge the metrological and control aspects of the entire system'' by simulating
+             ``each of the sensors onboard a machine\ldots as well as the function of the machine
+             itself.'' The verification gap is a recognised, named problem in this lineage ---
+             not an outside criticism of it}
+}
+
+@misc{read2024endofgcode,
+  author       = {Read, Jake Robert},
+  title        = {The End of {GCode}: Machine Architectures for Feedback Systems Assembly},
+  howpublished = {PhD thesis proposal, MIT Center for Bits and Atoms},
+  month        = dec,
+  year         = {2024},
+  note         = {\textbf{Non-archival; a proposal, not a defended thesis.} Cited as convergent
+                  diagnosis rather than as a result: it argues machines should stop ``blindly
+                  executing pre-generated instructions'' and instead ``measure their own
+                  performance''}
+}
+
 @misc{mas865,
   author       = {{Center for Bits and Atoms}},
   title        = {{MAS.865}: Rapid-Prototyping of Rapid-Prototyping Machines ---

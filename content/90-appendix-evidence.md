@@ -71,6 +71,32 @@ exists; the absence is itself the finding. **[D]** = derived by us from primary 
 | Glycerol 99\% vs 62\% alcohol, tip withdrawal | **2 mm/s vs 20 mm/s** — the parameters are *anti-correlated* | **[M]** |
 | Digital Pipette | \$80, printed, **validated to ISO 8655-2 permissible error** | **[M]** |
 
+## A negative result, obtained by systematic search
+
+We swept the MIT Center for Bits and Atoms corpus --- the News & Notes archive for 2022 through
+2026 (thirteen issues), the complete papers index, and the theses list --- for published work on:
+
+| Searched for | Found |
+|---|---|
+| Tool changers, modular end effectors | **none** |
+| Tool-seating verification | **none** |
+| Liquid handling | **none** |
+| Self-driving laboratories / automated science | **none** |
+| Reproducibility or verification in fabrication | **none** |
+| Machine positioning characterisation (ISO 230, error budgets, ballbar) | **none** |
+
+The nearest adjacents are the CBA/NIST **Open Metrology** workshop (August 2022), which frames
+metrology *access* as an open-source problem, and a 2019 melt-electrowriting paper performing
+*post-hoc* machine-learning metrology on a fabricated scaffold --- verification of the **product**,
+offline, rather than of the **machine**, in-process. The only tool-changing artefact in the entire
+corpus is a *purchased* desktop mill listed under new equipment.
+
+**This absence is not a gap in the search; it is the finding.** The lineage that produced
+Jubilee's motion architecture possesses the sensing substrate [@read2023maxl], the
+self-characterisation technique [@read2024online], the assertion abstraction [@oleary2024tandem],
+and a published account of why measurement matters [@warren2025metrology]. Every component of
+the answer exists. None has been pointed at a laboratory machine.
+
 ## Citation verification
 
 Every reference here has been checked against its primary source. Four were initially drafted

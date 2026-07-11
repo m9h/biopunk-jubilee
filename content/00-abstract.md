@@ -29,10 +29,20 @@ resulting failure is therefore silent. A mis-seated tool does not raise an error
 a plate of quietly corrupted data. This is the precise failure mode that renders unattended,
 multi-day biological assays --- the platform's central use case --- untrustworthy.
 
-The remedy already exists inside the same research group. Tandem, presented at CHI 2024,
-is a computational-notebook environment whose central contribution is *explicit assertions
-that flag mismatches between physical and digital state*, demonstrated on two-sided CNC
-milling. It has never been connected to `science-jubilee`.
+The remedy already exists, and not in one place but in two. **Tandem**, presented at CHI 2024,
+is a computational-notebook environment whose central contribution is *explicit assertions that
+flag mismatches between physical and digital state*, demonstrated on two-sided CNC milling. In
+parallel, a body of work at MIT's Center for Bits and Atoms argues that machines should measure
+themselves rather than assume their state --- and demonstrates it with an instrumented extruder
+that derives its own process parameters in situ.
+
+The two lines have already met. In 2023, Read, **Peek**, and Gershenfeld jointly published
+**MAXL**, a distributed control architecture that puts motion and *sensor data* on a common
+timebase across heterogeneous hardware --- one of its demonstrations is time-synchronised
+retrieval from an accelerometer. It solves the hard part and then stops: its trajectory object
+has "one author and multiple readers," and the architecture defines **no predicate** over the
+data it so carefully synchronises. **MAXL delivers synchronisation without assertion.** The
+clock is shared, the sensors are plumbed, and nobody wrote the `assert`.
 
 We propose that integration, in three parts. **First**, a transport rewrite: replace the
 blocking HTTP shim with a Duet object-model subscription that delivers a genuine

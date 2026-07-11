@@ -45,13 +45,21 @@ tension, a completion handshake, a seating switch that raises a catchable except
 an emergency stop, a pressure sensor in the pipette's air path, a calibration curve per reagent,
 and an assertion layer.
 
-**And the assertion layer already exists.** Tandem was published at CHI 2024 by the same group,
-in the same period, with the same people; its central contribution is explicit assertions that
-flag mismatches between physical and digital state; and it was pointed at a milling machine
-while the laboratory robot down the hall listed "additional error detection and failsafes" as
-its principal unmet need. The most valuable work available here is not to invent anything. **It
-is to connect two artefacts the group has already built, and then --- finally --- to measure the
-result.**
+**And every component of the answer has already been built by the people who would receive this
+proposal.** Tandem contributes the assertion abstraction, and was pointed at a milling machine
+while the laboratory robot down the hall listed "additional error detection and failsafes" as its
+principal unmet need [@oleary2024tandem]. Jake Read's instrumented extruder contributes the
+self-measurement technique, deriving its own process parameters in situ rather than trusting them
+[@read2024online]. *Computational Metrology for Materials* contributes the argument, in print,
+from CBA and NIST, that this is the field's missing layer [@warren2025metrology]. And **MAXL ---
+co-authored by Read, Peek, and Gershenfeld --- contributes the substrate**, synchronising sensor
+data and machine motion across heterogeneous hardware, and then declining to define a single
+predicate over the data it synchronises [@read2023maxl].
+
+**The clock is shared. The sensors are plumbed. The abstraction is published. Nobody wrote the
+`assert`.** The most valuable work available here is therefore not to invent anything. It is to
+connect four artefacts this community has already built, point them at a laboratory machine
+for the first time, and then --- finally --- measure the result.
 
 It is worth being precise about whose gap this is, because the uncharitable reading is also the
 wrong one. This lineage is not indifferent to measurement: CBA's machine-building class devotes

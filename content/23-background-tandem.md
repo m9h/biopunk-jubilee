@@ -3,75 +3,104 @@ category: research
 section: background
 weight: 23
 status: draft
-title: "Tandem: The Answer Already Written"
+title: "The Answer, Already Written Twice"
 slide_summary: |
-  ### Tandem (CHI 2024) --- Tran O'Leary, Ramesh, Zhang, Peek
+  ### Two threads converge here. They have already met.
 
-  A notebook environment for fabrication whose central contribution is:
+  - **Tandem** (CHI '24, **Peek**): *"explicit assertions... to flag mismatches between
+    physical and digital states."* Pointed at a milling machine.
+  - **Jake Read's line** (CBA, **Gershenfeld**): machines that measure themselves.
 
-  > **"explicit assertions in code to flag potential mismatches between physical
-  > and digital states."**
+  ### MAXL (SCF '23) --- Read, **Peek**, Gershenfeld
 
-  Demonstrated on **two-sided CNC milling** --- the hardest datum-survival problem in
-  subtractive manufacturing: you flip the workpiece and must *prove* the datum held.
+  Time-synchronised trajectories across heterogeneous actuators **and sensors**.
+  One demo is synchronised accelerometer *retrieval*.
 
-  ### And DuckBot's future-work section reads:
-
-  > unattended operation "would need **additional error detection and failsafes**."
-
-  Same lab. Same building. **Never connected.**
+  The clock is shared. The sensors are plumbed. **Nobody wrote the `assert`.**
 ---
 
-## What Tandem is
+The strongest argument for this proposal is that it is not really a new idea. It is the
+conjunction of two lines of work that the same people have already published, and that have
+already once appeared in the same paper.
+
+## Thread one: Tandem, and the assertion
 
 Tandem [@oleary2024tandem] addresses a problem in experimental digital fabrication: workflows
-are increasingly elaborate, and consequently increasingly irreproducible. Its response is to
-encode an entire end-to-end fabrication process as a computational-notebook program that another
-person can execute to physically recreate the work.
+are increasingly elaborate and consequently increasingly irreproducible. Its response is to
+encode an entire end-to-end process as a computational-notebook program that another person can
+execute to physically recreate the work.
 
-Four capabilities distinguish it from a plain Jupyter notebook driving a machine:
+Four capabilities distinguish it from a plain Jupyter notebook driving a machine. It exchanges
+data with CAD and CAM, so design intent stays live in the program. It projects augmented-reality
+interfaces onto the machine to guide the manual interventions real workflows always contain. It
+directly controls machines. And --- decisively for us --- it supports **explicit assertions in
+code to flag potential mismatches between physical and digital state.**
 
-1. It **exchanges data with CAD and CAM** software, so design intent stays live in the program.
-2. It **projects augmented-reality interfaces onto the machine** to guide the manual
-   interventions that real workflows always contain.
-3. It **directly controls fabrication machines.**
-4. Decisively for our purposes, it supports **explicit assertions in code to flag potential
-   mismatches between physical and digital state.**
+Its demonstration is two-sided CNC milling: machine one face, flip the workpiece, and then
+*prove* the datum survived the flip. This is the canonical instance of physical--digital
+divergence, and it is structurally identical to a tool change. In both cases a physical object is
+decoupled from its reference frame, re-coupled, and thereafter trusted.
 
-Its demonstration is two-sided CNC milling: you machine one face, flip the workpiece, and must
-then establish that the datum survived the flip. This is the canonical instance of
-physical--digital divergence, and it is *structurally identical* to a tool change. In both cases
-a physical object is decoupled from its reference frame, re-coupled, and thereafter trusted.
+## Thread two: Jake Read, and the machine that measures itself
 
-## Why it is the right abstraction for the science machines
+Running in parallel at MIT's Center for Bits and Atoms is a body of work whose thesis is that
+**machines should observe their own state rather than assume it.**
 
-The three failures in our introduction are not three problems. Under Tandem's framing they are
-one, and they are all **assertable**:
+The clearest artefact is *Online Measurement for Parameter Discovery in Fused Filament
+Fabrication* [@read2024online]. An extruder is instrumented with a load cell, a filament encoder,
+a Hall-effect diameter sensor, and a thermocouple; it fits a pressure function $P = f(T, Q)$ *in
+situ*; and it then **derives** its own process parameters instead of being told them --- succeeding,
+in the authors' words, "even in materials that we had never printed before." That is a machine
+that measures itself, built with cheap sensors, on a commodity motion platform. It is the
+existence proof that everything this proposal asks for is achievable.
 
-| Failure | The assertion it demands |
-|---|---|
-| Tool fails to seat (#43, #119) | *Assert:* the tool's three balls are in their kinematic seats. |
-| Python tool-state boolean goes stale (#116) | *Assert:* the firmware's active tool equals the program's belief. |
-| Motion has not completed when the next command issues | *Assert:* the motion queue is drained and position matches target. |
-| Labware is not where the deck file says | *Assert:* a touch probe finds the plate lip within tolerance. |
-| The dispensed volume is not the requested volume | *Assert:* the pressure trace matches the liquid class envelope. |
-| The wrong tool is on the carriage | *Assert:* the dock's tool identity matches the protocol's requirement. |
+The programme states its own diagnosis explicitly. *Computational Metrology for Materials*
+[@warren2025metrology], written with NIST, observes that R&D "is continuously hindered by the
+lack of data," that characterisation workflows are "proprietary… often poorly integrated," and
+proposes to "merge the metrological and control aspects of the entire system" by modelling "each
+of the sensors onboard a machine… as well as the function of the machine itself." And Read's
+thesis proposal, *The End of GCode* [@read2024endofgcode], puts the indictment in one line:
+machines should stop "blindly executing pre-generated instructions" and instead "measure their
+own performance."
 
-Every row is a physical--digital mismatch. Every row is currently unchecked.
+**The verification gap is therefore not an outside criticism of this lineage. It is a deficiency
+the lineage has named, in print, itself.**
 
-## The unclaimed opportunity
+## The two threads have already met, and stopped one step short
 
-Tandem is a separate repository --- `machineagency/tandem`, CC BY 4.0, Python and TypeScript,
-**four stars, last pushed December 2024** [@tandem_repo]. It has never been connected to
-`science-jubilee`, which drives the group's biology and chemistry machines through an
-assertion-free HTTP shim.
+In 2023, Jake Read, **Nadya Peek**, and Neil Gershenfeld jointly published **MAXL: Distributed
+Trajectories for Modular Motion** [@read2023maxl] --- CBA and the UW Machine Agency, on the same
+paper. It is a modular control architecture for "synchronous control of heterogeneous
+components," and its four contributions include a distributed trajectory object, high- and
+low-level APIs, and a time-synchronisation algorithm.
 
-We want to state the resulting situation plainly, because it is the strongest argument in this
-proposal and it costs nothing to act on. **The Machine Agency published, at CHI 2024, a general
-mechanism for asserting that a machine's physical state matches its program's model of it. In
-the same period, the same group published a laboratory robot whose stated limitation is that
-unattended operation "would need additional error detection and failsafes." The mechanism was
-demonstrated on a milling machine. It was never pointed at the laboratory.**
+Read what it demonstrates. One application is time-synchronised data *output* (light-painting).
+The other is time-synchronised data ***retrieval*** --- from an accelerometer. **MAXL already
+solves the hard part: getting sensor data and machine motion onto a common timebase, across
+heterogeneous hardware.**
 
-The intellectual work is done. What remains is engineering, and --- as the next sections argue
---- a modest amount of sensing hardware to make the assertions bite.
+And then it stops. The trajectory object has "one author and multiple readers." Sensors are
+*readers*. Nothing in the architecture allows a sensor reading to **contradict** the trajectory,
+because the architecture defines **no predicate over the data it so carefully synchronises**.
+
+> **This is the gap, stated with precision: MAXL delivers synchronisation without assertion.**
+> The clock is shared. The sensors are plumbed. Nobody wrote the `assert`.
+
+## What is conspicuously absent
+
+We searched the CBA corpus --- the news archive from 2022 to 2026, and the full papers index ---
+for work on tool changers, tool-seating verification, liquid handling, self-driving laboratories,
+or reproducibility in fabrication.
+
+**There is none.** Not one paper. The closest adjacents are the CBA/NIST Open Metrology workshop
+and a 2019 melt-electrowriting paper that performs *post-hoc* machine-learning metrology on a
+fabricated scaffold --- verification of the *product*, offline, not of the *machine*, in-process.
+
+That absence is not a hole in our search. **It is the finding.** The lineage that produced
+Jubilee's motion architecture possesses the sensing substrate (MAXL), the self-characterisation
+technique (the instrumented extruder), the assertion abstraction (Tandem), and an explicit,
+published account of why measurement matters (Computational Metrology). It has assembled every
+component of the answer. **It has simply never pointed them at a laboratory machine.**
+
+This proposal is the next paper in a sequence that already has four entries --- and we can say so
+with citations rather than assertion.
