@@ -39,21 +39,43 @@ Software*, supervised by **Neil Gershenfeld** at MIT's **Center for Bits and Ato
 [@mtm_cba], an archive of modular machine components, end effectors, frameworks, and networked
 motion-control nodes: MTM Snap, the Cardboard Machine Kit, Popfab, gestalt, mods.
 
-Read that inheritance carefully, because it is the key to the entire critique. The MTM tradition
-treats a machine as a **composable, reconfigurable medium** --- something a person assembles from
-modules to do a thing nobody anticipated. Its research questions are about *accessibility,
-modularity, and expressive range*. They are not about accuracy, repeatability, or measurement
-uncertainty, and they never were. Jubilee is the direct descendant of that programme, published
-at CHI, a human--computer interaction venue.
+Read that inheritance carefully, because it is the key to the entire critique --- and because the
+obvious version of the critique is *wrong*, in an instructive way.
 
-And that tradition is not history; it is the live frontier. The **CHI 2026 Best Paper** went to a
-CBA-lineage team --- led by Ilan Moyer, author of the *gestalt* motion-control framework --- for a
+The tempting claim is that this tradition simply neglects measurement. It does not. CBA's
+flagship machine-building class, MAS.865, *"Rapid-Prototyping of Rapid-Prototyping Machines,"*
+devotes an entire week to **metrology**, alongside weeks on real-time computing and
+communications, path planning, control, and vision systems [@mas865]. Measurement is explicitly
+on the syllabus.
+
+But look at *what kind* of metrology is taught. The module's own topics are "accuracy and
+precision, relative and absolute, single-ended and differential, bits and oversampling,
+acquisition rate and Nyquist," and "physical phenomena that can be turned into electrical
+signals," and low-cost sensors "ready for integration into projects." This is **metrology as
+sensing**: how to build a machine that *perceives*. It is not **metrology as machine
+characterisation**: there are no error budgets, no Abbe error, no kinematic-coupling
+repeatability, no ISO 230, no ballbar or interferometric positioning tests.
+
+That distinction is the seam this entire proposal sits in, and it cuts in the tradition's favour
+as much as against it:
+
+- **The sensing half of this proposal is native to the lineage.** Assertions backed by real
+  sensors --- a seating switch, a pressure transducer, a tool-identity contact --- are exactly what
+  a CBA machine-builder is trained to add. We are not importing a foreign discipline. We are
+  turning the tradition's own instrument on a target it has not yet been pointed at.
+- **The characterisation half is genuinely absent.** Nobody in this lineage is taught to pick up
+  a tool one hundred times and publish the standard deviation, because that is a machine-tool
+  metrology practice, and the tradition descends from Fab Labs rather than from Moore's
+  *Foundations of Mechanical Accuracy*.
+
+And the tradition is not history; it is the live frontier. The **CHI 2026 Best Paper** went to a
+CBA team --- led by Ilan Moyer, author of the *gestalt* motion-control framework --- for a
 cantilevered DeltaXY mechanism enabling narrow, deep, "rackable" machines, demonstrated as a
 bookshelf 3D printer [@moyer2026deltaxy]. It is excellent work. It is also, tellingly, a paper
-about **form factor and spatial efficiency**, at an HCI venue, containing no repeatability
-characterisation. The tradition is thriving and it is still optimising for the things it has
-always optimised for. **The gap this proposal identifies is not a lapse by any individual. It is
-a structural property of a research programme that was never pointed at metrology.**
+about **form factor and spatial efficiency**, at an HCI venue, reporting no positioning
+repeatability. **The gap this proposal identifies is therefore not anyone's lapse. It is a
+structural property of a research programme that teaches machines to sense the world, and has
+never been asked to make them sense themselves.**
 
 **This is the correct frame for every criticism in this proposal.** Jubilee contains no
 characterisation section not through oversight but because *it is not a metrology artefact and

@@ -53,6 +53,16 @@ its principal unmet need. The most valuable work available here is not to invent
 is to connect two artefacts the group has already built, and then --- finally --- to measure the
 result.**
 
+It is worth being precise about whose gap this is, because the uncharitable reading is also the
+wrong one. This lineage is not indifferent to measurement: CBA's machine-building class devotes
+a full week to metrology [@mas865]. But what it teaches is metrology *as sensing* --- accuracy and
+precision, oversampling, Nyquist, "physical phenomena that can be turned into electrical
+signals." It teaches you to build a machine that **perceives the world**. It does not teach
+error budgets, kinematic-coupling repeatability, or ISO 230; it never asks the machine to
+perceive **itself**. That is the whole distance this proposal travels --- and it means the sensing
+work we propose is *native* to the tradition, not imported into it. We are turning an instrument
+the field already owns onto a target it has not yet considered.
+
 We propose to begin with the measurement, because it costs nothing and because it may make half
 of this proposal unnecessary. Pick up a tool one hundred times and write down where it lands. No
 one has done this --- not for the Jubilee, not for the Prusa XL, not for the Opentrons OT-2 or
