@@ -1,0 +1,42 @@
+project:
+  name: jubilee-tandem
+  title: "Closing the Verification Gap: Integrating Tandem's Physical–Digital Assertions into Science Jubilee"
+  short_title: "Verified Science Jubilee"
+
+authors:
+  - name: Morgan Hough
+    affiliation: "Independent"
+    email: morgan.hough@gmail.com
+    orcid: ""
+
+date: "2026-07-11"
+version: "0.1.0"
+
+abstract_source: auto
+
+keywords:
+  - laboratory automation
+  - open-source hardware
+  - tool-changing motion platforms
+  - liquid handling
+  - reproducibility
+  - self-driving laboratories
+
+exclude_drafts: false
+bibliography: references.bib
+
+beamer_theme: metropolis
+beamer_colortheme: ""
+
+scan_paths:
+  - content
+
+exclude_paths:
+  - .git
+  - .venv
+  - node_modules
+  - __pycache__
+  - manuscript/output
+  - .github
+
+output_dir: manuscript/output

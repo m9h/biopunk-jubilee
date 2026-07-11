@@ -1,0 +1,342 @@
+% ---------------------------------------------------------------------------
+% Origins of additive manufacturing and the open-hardware lineage
+% ---------------------------------------------------------------------------
+
+@patent{hull1986apparatus,
+  author = {Hull, Charles W.},
+  title  = {Apparatus for Production of Three-Dimensional Objects by Stereolithography},
+  number = {US 4,575,330},
+  year   = {1986},
+  month  = mar,
+  note   = {Filed 1984; the founding stereolithography patent, and the origin of 3D Systems}
+}
+
+@patent{crump1992apparatus,
+  author = {Crump, S. Scott},
+  title  = {Apparatus and Method for Creating Three-Dimensional Objects},
+  number = {US 5,121,329},
+  year   = {1992},
+  month  = jun,
+  note   = {Fused deposition modeling; expiry in 2009 precipitated the desktop FDM market}
+}
+
+@article{jones2011reprap,
+  author  = {Jones, Rhys and Haufe, Patrick and Sells, Edward and Iravani, Pejman and
+             Olliver, Vik and Palmer, Chris and Bowyer, Adrian},
+  title   = {{RepRap} -- the Replicating Rapid Prototyper},
+  journal = {Robotica},
+  volume  = {29},
+  number  = {1},
+  pages   = {177--191},
+  year    = {2011},
+  doi     = {10.1017/S026357471000069X}
+}
+
+@phdthesis{peek2016machines,
+  author = {Peek, Nadya},
+  title  = {Making Machines that Make: Object-Oriented Hardware Meets Object-Oriented Software},
+  school = {Massachusetts Institute of Technology},
+  year   = {2016},
+  note   = {The intellectual antecedent of the Jubilee programme}
+}
+
+@patent{stratasys2015toolchanger,
+  author = {Swanson, William J. and Batchelder, J. Samuel and Comb, James W.},
+  title  = {Head Tool Changer for Use with Deposition-Based Digital Manufacturing Systems},
+  number = {US 8,926,484 B1},
+  year   = {2015},
+  month  = jan,
+  note   = {Assignee Stratasys; priority 2010-03-29; anticipated expiry 2033. Claims cover
+            powered tool docks that hand off power to the gantry on pickup, which is why no
+            vendor ships pogo-pin tool couplings}
+}
+
+% ---------------------------------------------------------------------------
+% The Jubilee programme (Machine Agency, University of Washington)
+% ---------------------------------------------------------------------------
+
+@inproceedings{vasquez2020jubilee,
+  author    = {Vasquez, Joshua and Twigg-Smith, Hannah and Tran O'Leary, Jasper and Peek, Nadya},
+  title     = {Jubilee: An Extensible Machine for Multi-Tool Fabrication},
+  booktitle = {Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems},
+  year      = {2020},
+  publisher = {ACM},
+  doi       = {10.1145/3313831.3376425}
+}
+
+@inproceedings{oleary2024tandem,
+  author    = {Tran O'Leary, Jasper and Ramesh, Thrisha and Zhang, Octi and Peek, Nadya},
+  title     = {Tandem: Reproducible Fabrication Workflows with Computational Notebooks},
+  booktitle = {Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems},
+  year      = {2024},
+  publisher = {ACM},
+  note      = {Introduces explicit assertions that flag mismatches between physical and
+               digital state; demonstrated on two-sided CNC milling}
+}
+
+@article{subbaraman2024duckbot,
+  author  = {Subbaraman, Blair and de Lange, Orlando and Ferguson, Sam and Peek, Nadya},
+  title   = {The {Duckbot}: A System for Automated Imaging and Manipulation of Duckweed},
+  journal = {PLOS ONE},
+  volume  = {19},
+  number  = {1},
+  pages   = {e0296717},
+  year    = {2024},
+  doi     = {10.1371/journal.pone.0296717}
+}
+
+@article{luo2025fungibot,
+  author  = {Luo, Danli and Yang, Junchao and Peek, Nadya},
+  title   = {{FungiBot}: Printing Mycelium Biocomposites with a Living Paste Extruder},
+  journal = {3D Printing and Additive Manufacturing},
+  year    = {2025}
+}
+
+@article{politi2023sonication,
+  author  = {Politi, Justin and Baum, Sarah and Vaddi, Kiran and Pozzo, Lilo D. and Peek, Nadya},
+  title   = {A High-Throughput Workflow for the Synthesis of {CdSe} Nanocrystals Using a
+             Sonochemical Materials Acceleration Platform},
+  journal = {Digital Discovery},
+  volume  = {2},
+  pages   = {1042},
+  year    = {2023},
+  doi     = {10.1039/D3DD00033H},
+  note    = {The Sonication Station: a Jubilee operating alongside an OT-2, not instead of one}
+}
+
+@article{pelkie2025democratizing,
+  author  = {Pelkie, Brenden and Baird, Sterling and Aissi, Mohamed and others},
+  title   = {Democratizing Self-Driving Labs Through User-Developed Automation Infrastructure},
+  journal = {ChemRxiv},
+  year    = {2025},
+  doi     = {10.26434/chemrxiv-2025-zhkrf},
+  note    = {Prices Science Jubilee at approximately \$2{,}000 and 100 developer-hours}
+}
+
+@mastersthesis{vierra2025dipcoating,
+  author = {Vierra, Duke},
+  title  = {Design, Modification, and Evaluation of the {Jubilee} Open-Source Motion Platform
+            for Automated Dip Coating},
+  school = {University of Hawai'i at M\={a}noa},
+  year   = {2025},
+  month  = dec,
+  note   = {Independently rediscovers the missing motion-completion handshake; measures PLA
+            degradation under isopropanol exposure}
+}
+
+% ---------------------------------------------------------------------------
+% Liquid-handling robotics: the commercial lineage and its open descendants
+% ---------------------------------------------------------------------------
+
+@article{pochert2000lld,
+  author  = {Pochert, Ulrich},
+  title   = {Liquid Level Detection in High-Throughput Screening},
+  journal = {International Biotechnology Laboratory},
+  year    = {2000},
+  month   = oct,
+  note    = {Hamilton's own account of CO-RE tip coupling, capacitive and pressure-based
+             liquid-level detection, and the sub-millimetre meniscus resolution both achieve}
+}
+
+@article{wierenga2023pylabrobot,
+  author  = {Wierenga, Rick P. and Golas, Stefan M. and Ho, Wilson and Coley, Connor W. and
+             Esvelt, Kevin M.},
+  title   = {{PyLabRobot}: An Open-Source, Hardware-Agnostic Interface for Liquid-Handling Robots
+             and Accessories},
+  journal = {Device},
+  volume  = {1},
+  number  = {4},
+  pages   = {100111},
+  year    = {2023},
+  doi     = {10.1016/j.device.2023.100111}
+}
+
+@article{yoshikawa2023digitalpipette,
+  author  = {Yoshikawa, Naruki and Darvish, Kourosh and Vakili, Mohammad Ghazi and
+             Garg, Animesh and Aspuru-Guzik, Al\'{a}n},
+  title   = {Digital Pipette: Open-Hardware Liquid Handling for Nonstandard Containers},
+  journal = {Digital Discovery},
+  volume  = {2},
+  pages   = {1745},
+  year    = {2023},
+  doi     = {10.1039/D3DD00115F},
+  note    = {An \$80 3D-printed syringe tool validated to within ISO 8655-2 permissible error;
+             the existence proof that DIY tools can be metrologically serious}
+}
+
+@article{barthels2020findus,
+  author  = {Barthels, Fabian and Barthels, Ulrich and Schwickert, Marvin and Schirmeister, Tanja},
+  title   = {{FINDUS}: An Open-Source 3D Printable Liquid-Handling Workstation for Laboratory
+             Automation in Life Sciences},
+  journal = {SLAS Technology},
+  volume  = {25},
+  number  = {2},
+  pages   = {190--199},
+  year    = {2020},
+  doi     = {10.1177/2472630319877374}
+}
+
+@article{steel2020chibio,
+  author  = {Steel, Harrison and Habgood, Robert and Kelly, Ciar\'{a}n L. and
+             Papachristodoulou, Antonis},
+  title   = {In Situ Characterisation and Manipulation of Biological Systems with {Chi.Bio}},
+  journal = {PLOS Biology},
+  volume  = {18},
+  number  = {7},
+  pages   = {e3000794},
+  year    = {2020},
+  doi     = {10.1371/journal.pbio.3000794}
+}
+
+@article{nambiar2024viscous,
+  author  = {Nambiar, Aniket M. and others},
+  title   = {Bayesian Optimization of Computer-Controlled Liquid Handling for Viscous Fluids},
+  journal = {Digital Discovery},
+  volume  = {3},
+  pages   = {1011},
+  year    = {2024},
+  doi     = {10.1039/D3DD00255A},
+  note    = {Multi-objective Bayesian optimisation of aspiration and dispense rates reaches
+             within 5\% transfer error at 1275 cP, far beyond the rated 100 cP envelope}
+}
+
+@article{bradshaw2005mvs,
+  author  = {Bradshaw, John T. and Knaide, Tanya and Rogers, Anthony and Curtis, Richard},
+  title   = {Multichannel Verification System ({MVS}): A Dual-Dye Ratiometric Photometry System
+             for Performance Verification of Multichannel Liquid Delivery Devices},
+  journal = {Journal of the Association for Laboratory Automation},
+  volume  = {10},
+  number  = {1},
+  pages   = {35--42},
+  year    = {2005},
+  doi     = {10.1016/j.jala.2004.08.012}
+}
+
+% ---------------------------------------------------------------------------
+% Direct ink writing of living materials: the counter-architecture
+% ---------------------------------------------------------------------------
+
+@article{weiss2025printess,
+  author  = {Weiss, Jonathan D. and Mermin-Bunnell, Alana M. and Solberg, Fredrik and others
+             and Skylar-Scott, Mark A.},
+  title   = {A Low-Cost, Open-Source 3D Printer for Multimaterial and High-Throughput Direct
+             Ink Writing of Soft and Living Materials},
+  journal = {Advanced Materials},
+  year    = {2025},
+  doi     = {10.1002/adma.202414971},
+  note    = {The Printess. Open preprint: bioRxiv 10.1101/2024.10.01.615991. Measured
+             repeatability $\pm$5\,\textmu m per axis; measured \emph{uncompensated} backlash
+             $\pm$75/$\pm$150/$\pm$50\,\textmu m in X/Y/Z}
+}
+
+% ---------------------------------------------------------------------------
+% Self-driving laboratories and the frugal tier
+% ---------------------------------------------------------------------------
+
+@article{macleod2020ada,
+  author  = {MacLeod, Benjamin P. and Parlane, Fraser G. L. and Morrissey, Thomas D. and others
+             and Berlinguette, Curtis P.},
+  title   = {Self-Driving Laboratory for Accelerated Discovery of Thin-Film Materials},
+  journal = {Science Advances},
+  volume  = {6},
+  number  = {20},
+  pages   = {eaaz8867},
+  year    = {2020},
+  doi     = {10.1126/sciadv.aaz8867}
+}
+
+@article{szymanski2023alab,
+  author  = {Szymanski, Nathan J. and Rendy, Bernardus and Fei, Yuxing and others and
+             Ceder, Gerbrand},
+  title   = {An Autonomous Laboratory for the Accelerated Synthesis of Novel Materials},
+  journal = {Nature},
+  volume  = {624},
+  pages   = {86--91},
+  year    = {2023},
+  doi     = {10.1038/s41586-023-06734-w}
+}
+
+@article{lo2024frugal,
+  author  = {Lo, Stanley and Baird, Sterling G. and Schrier, Joshua and others},
+  title   = {Review of Low-Cost Self-Driving Laboratories in Chemistry and Materials Science:
+             The `Frugal Twin' Concept},
+  journal = {Digital Discovery},
+  volume  = {3},
+  pages   = {842},
+  year    = {2024},
+  doi     = {10.1039/D3DD00223C}
+}
+
+% ---------------------------------------------------------------------------
+% Standards and materials constraints
+% ---------------------------------------------------------------------------
+
+@techreport{iso8655-2,
+  author      = {{International Organization for Standardization}},
+  title       = {{ISO 8655-2:2022} Piston-Operated Volumetric Apparatus --- Part 2: Pipettes},
+  institution = {ISO},
+  year        = {2022},
+  note        = {Formalises Type A (air displacement) versus Type D (positive displacement);
+                 Annex A enumerates error sources unique to the air cushion}
+}
+
+@techreport{iso23783,
+  author      = {{International Organization for Standardization}},
+  title       = {{ISO 23783:2022} Automated Liquid Handling Systems},
+  institution = {ISO},
+  year        = {2022},
+  note        = {Parts 1--3. Cancels and replaces IWA 15:2015. This --- not ISO 8655 --- is the
+                 governing standard for an automated liquid handler}
+}
+
+@techreport{slas2004,
+  author      = {{Society for Laboratory Automation and Screening}},
+  title       = {{ANSI/SLAS} 1-2004 through 4-2004: Microplate Footprint, Height, Bottom Flange,
+                 and Well Positions},
+  institution = {SLAS},
+  year        = {2004},
+  note        = {96-well pitch 9.00\,mm; A1 offset 14.38\,mm $\times$ 11.24\,mm. Opentrons
+                 labware JSON is, in practice, a machine-readable encoding of these standards}
+}
+
+@article{kucewicz2021sterilization,
+  author  = {Kucewicz, John C. and others},
+  title   = {Considerations for Sterilization of 3D Printed Devices},
+  journal = {3D Printing in Medicine},
+  volume  = {7},
+  number  = {19},
+  year    = {2021},
+  note    = {PMC8193021. Layer porosity impedes post-print sterilisation; PLA parts cannot be
+             resterilised with isopropanol, bleach, or hydrogen peroxide}
+}
+
+% ---------------------------------------------------------------------------
+% Software artefacts cited as software
+% ---------------------------------------------------------------------------
+
+@software{sciencejubilee,
+  author  = {{Machine Agency}},
+  title   = {science-jubilee: Controlling Jubilees for Science},
+  url     = {https://github.com/machineagency/science-jubilee},
+  year    = {2026},
+  note    = {MIT licence. Read at commit of 2026-04-23: 13 tool drivers, Opentrons labware
+             schema v2, and a single 93-byte test}
+}
+
+@software{tandem_repo,
+  author  = {{Machine Agency}},
+  title   = {tandem: Backend Functionality for Physical--Digital Notebooks},
+  url     = {https://github.com/machineagency/tandem},
+  year    = {2024},
+  note    = {CC BY 4.0. Last pushed 2024-12-05}
+}
+
+@misc{e3d_toolchanger_review,
+  author       = {{3D Printing Industry}},
+  title        = {Review: {E3D} Motion System and {ToolChanger}},
+  year         = {2020},
+  howpublished = {\url{https://www.3dprintingindustry.com/news/review-e3d-motion-system-and-toolchanger-multitool-and-multi-material-3d-printer-186182/}},
+  note         = {The only published, independently measured toolchanger repeatability dataset
+                  in open-source 3D printing: mean X offset 0.022\,mm, mean Y offset 0.025\,mm,
+                  mean $\sigma$ 0.026\,mm --- against E3D's bench claim of $<$5\,\textmu m}
+}
