@@ -144,11 +144,19 @@ confirm a motion completed would simply relocate the problem.
 
 DuckBot's authors concede that the system "does not ensure a sterile experimental environment,"
 and propose running it inside a laminar-flow hood. The materials literature reaches the same
-conclusion independently and less optimistically: 3D-printed parts present a **porous surface
-that impedes post-print sterilisation**, and PLA components "may be initially sterile, [but]
-resterilization is not possible using methods such as isopropanol, bleach and/or H$_2$O$_2$"
-[@kucewicz2021sterilization]. PLA additionally cannot be autoclaved, and loses substantial
-mechanical performance after isopropanol exposure [@vierra2025dipcoating].
+conclusion independently, less optimistically, and --- importantly --- *by measurement rather than
+by assertion*. Testing re-sterilisation of printed parts, Luchini and colleagues report that
+**"significant bacterial growth was observed in all PLA and TPU based samples following
+re-sterilization, regardless of the methods used"** ($p < 0.05$) --- that is, isopropanol, bleach,
+*and* hydrogen peroxide all failed, with colonies measurable within 24 hours. Their diagnosis is
+geometric: the "crypts and small spaces created by the infill" simply cannot be reached by a
+cleaning solution [@luchini2021sterilization]. PLA additionally cannot be autoclaved, and loses
+substantial mechanical performance after isopropanol exposure [@vierra2025dipcoating].
+
+Note the force of this. It is not that a printed part is *hard* to sterilise. It is that a
+printed part which has been contaminated **cannot be returned to a sterile state by any of the
+three methods a laboratory would actually reach for.** For a machine whose wetted parts are
+printed, that is a structural fact, not a procedural one.
 
 Compounding this, a converted FDM printer *sheds*: exposed belts, greased leadscrews directly
 above the deck, and open steppers, all inside what is supposed to be a unidirectional downflow

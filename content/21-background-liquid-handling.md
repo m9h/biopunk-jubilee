@@ -181,13 +181,19 @@ platform is \$1,800. Below roughly 5 µL, *nothing* in the Opentrons range beats
 systematic error --- which is precisely the regime in which an open platform gives up almost
 nothing.
 
-A substantial literature now defends this "frugal twin" tier explicitly [@lo2024frugal], and
-the existence proofs are real: FINDUS demonstrated a printable liquid-handling workstation for
-under a few hundred dollars [@barthels2020findus]; Chi.Bio built a parallel bioreactor platform
-with in-situ optics for a few hundred per unit [@steel2020chibio]; and --- most directly relevant
---- the **Digital Pipette** is an \$80 3D-printed linear-servo syringe tool **validated to
-within ISO 8655-2 permissible error** [@yoshikawa2023digitalpipette]. **A DIY tool can be
-metrologically serious. It simply has to be measured.**
+A substantial literature now defends this "frugal twin" tier explicitly [@lo2024frugal], and the
+existence proofs are real --- **and, crucially, several of them are measured.** Chi.Bio built a
+parallel bioreactor platform with in-situ optics for a few hundred dollars per unit
+[@steel2020chibio]. **FINDUS** printed an entire liquid-handling workstation for **under \$400**
+and reported **relative pipetting errors below 0.3\%** [@barthels2020findus]. And the **Digital
+Pipette** is an \$80 3D-printed linear-servo syringe tool **validated to within ISO 8655-2
+permissible error** [@yoshikawa2023digitalpipette].
+
+Read those last two together, because they remove the excuse. Two independent groups built
+printed liquid handlers for a few hundred dollars and **published accuracy figures for them.**
+The obstacle to metrologically serious open hardware is therefore not cost, not printing, and
+not the frugal tier as such. **A DIY tool can be metrologically serious. It simply has to be
+measured --- and in the Jubilee line, it has not been.**
 
 Against this, note where the celebrated self-driving laboratories actually sit: Ada uses an N9
 SCARA arm and a UR5e [@macleod2020ada]; the A-Lab uses three robotic arms and eight furnaces

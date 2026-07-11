@@ -71,6 +71,25 @@ exists; the absence is itself the finding. **[D]** = derived by us from primary 
 | Glycerol 99\% vs 62\% alcohol, tip withdrawal | **2 mm/s vs 20 mm/s** — the parameters are *anti-correlated* | **[M]** |
 | Digital Pipette | \$80, printed, **validated to ISO 8655-2 permissible error** | **[M]** |
 
+## Citation verification
+
+Every reference here has been checked against its primary source. Four were initially drafted
+from recall and then verified; **one of those four was wrong, and is recorded rather than
+quietly corrected** — a document arguing for verification should be willing to show its own.
+
+| Reference | Outcome |
+|---|---|
+| Jones et al., *RepRap*, Robotica **29**(1):177--191, 2011 | **Confirmed exactly** — author list, volume, pages, DOI |
+| Peek, *Making Machines that Make*, MIT, 2016 | **Confirmed**; refined to PhD, Program in Media Arts and Sciences, Sept 2016, supervised by **Neil Gershenfeld** (Center for Bits and Atoms) |
+| Barthels et al., *FINDUS*, SLAS Technology **25**(2):190--199, 2020 | **Confirmed** — and it *publishes accuracy*: under \$400, relative pipetting error **below 0.3\%** |
+| *(as drafted)* "Kucewicz et al., Considerations for Sterilization of 3D Printed Devices, 3D Print. Med. **7**:19" | **WRONG — withdrawn.** PMC8193021 is in fact **Luchini et al.**, *"Sterilization and Sanitizing of 3D-Printed PPE Using Polypropylene and a Single Wall Design,"* 3D Print. Med. **7**:16 (2021), DOI 10.1186/s41205-021-00106-8. The author name and article number were misremembered. |
+
+The *substance* of the withdrawn citation survives, and is better supported than first claimed:
+Luchini et al. **measured** significant bacterial growth in **all** PLA samples after
+re-sterilisation, *regardless of method* — isopropanol, bleach, and hydrogen peroxide all failed,
+$p < 0.05$ — attributing it to infill crypts that cleaning solutions cannot reach. The corrected
+claim is stronger than the one it replaced.
+
 ## Claims we could not substantiate, and therefore do not make
 
 - Any ISO 230-2 test of any open CoreXY machine.

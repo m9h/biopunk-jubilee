@@ -36,8 +36,40 @@
   author = {Peek, Nadya},
   title  = {Making Machines that Make: Object-Oriented Hardware Meets Object-Oriented Software},
   school = {Massachusetts Institute of Technology},
+  type   = {{PhD} thesis},
+  address = {Program in Media Arts and Sciences, School of Architecture and Planning},
+  month  = sep,
   year   = {2016},
-  note   = {The intellectual antecedent of the Jubilee programme}
+  url    = {https://cba.mit.edu/docs/theses/16.08.Peek.pdf},
+  note   = {Supervised by Neil Gershenfeld, Center for Bits and Atoms. The intellectual
+            antecedent of the Jubilee programme: modular, composable machine building}
+}
+
+@misc{mtm_cba,
+  author       = {{Center for Bits and Atoms}},
+  title        = {Machines that Make},
+  howpublished = {\url{https://mtm.cba.mit.edu/}},
+  year         = {2006--2024},
+  note         = {MIT CBA. An archive of modular machine components, end effectors, frameworks
+                  and circuits --- MTM Snap, Cardboard Machine Kit, Popfab, the gestalt networked
+                  motion-control nodes, and the mods dataflow environment. The tradition Jubilee
+                  descends from: machines as a composable, reconfigurable medium}
+}
+
+@inproceedings{moyer2026deltaxy,
+  author    = {Moyer, Ilan and McElroy, Leo and Bols\'{e}e, Quentin and
+               Rivera Camacho, Joshua and Jacobs, Jennifer and Yang, Maria},
+  title     = {A Cantilevered {DeltaXY} Positioning Mechanism Architecture Enabling Rackable
+               Digital Fabrication Form-Factors},
+  booktitle = {Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems},
+  year      = {2026},
+  publisher = {ACM},
+  doi       = {10.1145/3772318.3791468},
+  note      = {\textbf{CHI 2026 Best Paper.} Moyer is the author of \emph{gestalt}, the MTM
+               networked motion-control framework. Introduces narrow, deep, ``rackable'' machines
+               with high lateral spatial efficiency, demonstrated as \emph{Fab Unit}, a bookshelf
+               3D printer. Evidence that the CBA/MTM lineage is live --- and that it is still
+               optimising form factor and accessibility rather than metrology}
 }
 
 @patent{stratasys2015toolchanger,
@@ -173,7 +205,10 @@
   number  = {2},
   pages   = {190--199},
   year    = {2020},
-  doi     = {10.1177/2472630319877374}
+  doi     = {10.1177/2472630319877374},
+  note    = {PMID 31540570. Fully Integrable Noncommercial Dispensing Utility System: a printed
+             liquid-handling workstation for under \$400, reporting relative pipetting errors
+             below 0.3\%. A second existence proof that open tools can be measured}
 }
 
 @article{steel2020chibio,
@@ -299,15 +334,20 @@
                  labware JSON is, in practice, a machine-readable encoding of these standards}
 }
 
-@article{kucewicz2021sterilization,
-  author  = {Kucewicz, John C. and others},
-  title   = {Considerations for Sterilization of 3D Printed Devices},
+@article{luchini2021sterilization,
+  author  = {Luchini, Karstan and Sloan, Shelly N. B. and Mauro, Ryan and Sargsyan, Aspram and
+             Newman, Aundrea and Persaud, Purnadeo and Hawkins, Daniel and Wolff, Dennis and
+             Staudinger, Jeff and Creamer, Bradley A.},
+  title   = {Sterilization and Sanitizing of 3D-Printed Personal Protective Equipment Using
+             Polypropylene and a Single Wall Design},
   journal = {3D Printing in Medicine},
   volume  = {7},
-  number  = {19},
+  number  = {16},
   year    = {2021},
-  note    = {PMC8193021. Layer porosity impedes post-print sterilisation; PLA parts cannot be
-             resterilised with isopropanol, bleach, or hydrogen peroxide}
+  doi     = {10.1186/s41205-021-00106-8},
+  note    = {PMC8193021. Measured: significant bacterial growth in \emph{all} PLA and TPU samples
+             after re-sterilisation, regardless of method (isopropanol, bleach, or hydrogen
+             peroxide), $p < 0.05$. Infill crypts cannot be reached by cleaning solutions}
 }
 
 % ---------------------------------------------------------------------------

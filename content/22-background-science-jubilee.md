@@ -29,17 +29,39 @@ kinematically coupled bed with three-point auto-tramming, MGN12 linear rails thr
 tool rack holding four tools. The Filastruder kit is \$1,800; self-sourcing runs about \$1,400.
 It is controlled by a Duet 3 board running RepRapFirmware.
 
-Its provenance matters for how it should be judged. It came out of the **Machine Agency**, a
-group in the University of Washington's Department of Human Centered Design & Engineering,
-whose stated thesis is "the precision of machines for the creativity of individuals," and whose
-intellectual lineage runs through Peek's work on modular machine building
-[@peek2016machines]. Jubilee was published at CHI --- a human--computer interaction venue --- and
-it optimises for *extensibility, accessibility, and democratisation*.
+Its provenance matters enormously for how it should be judged, and it is worth tracing precisely.
+Jubilee came out of the **Machine Agency**, a group in the University of Washington's Department
+of Human Centered Design & Engineering, whose stated thesis is "the precision of machines for the
+creativity of individuals." That group's intellectual lineage runs directly through Peek's
+doctoral work --- *Making Machines that Make: Object-Oriented Hardware Meets Object-Oriented
+Software*, supervised by **Neil Gershenfeld** at MIT's **Center for Bits and Atoms**
+[@peek2016machines] --- and behind that, through CBA's **Machines that Make** programme
+[@mtm_cba], an archive of modular machine components, end effectors, frameworks, and networked
+motion-control nodes: MTM Snap, the Cardboard Machine Kit, Popfab, gestalt, mods.
+
+Read that inheritance carefully, because it is the key to the entire critique. The MTM tradition
+treats a machine as a **composable, reconfigurable medium** --- something a person assembles from
+modules to do a thing nobody anticipated. Its research questions are about *accessibility,
+modularity, and expressive range*. They are not about accuracy, repeatability, or measurement
+uncertainty, and they never were. Jubilee is the direct descendant of that programme, published
+at CHI, a human--computer interaction venue.
+
+And that tradition is not history; it is the live frontier. The **CHI 2026 Best Paper** went to a
+CBA-lineage team --- led by Ilan Moyer, author of the *gestalt* motion-control framework --- for a
+cantilevered DeltaXY mechanism enabling narrow, deep, "rackable" machines, demonstrated as a
+bookshelf 3D printer [@moyer2026deltaxy]. It is excellent work. It is also, tellingly, a paper
+about **form factor and spatial efficiency**, at an HCI venue, containing no repeatability
+characterisation. The tradition is thriving and it is still optimising for the things it has
+always optimised for. **The gap this proposal identifies is not a lapse by any individual. It is
+a structural property of a research programme that was never pointed at metrology.**
 
 **This is the correct frame for every criticism in this proposal.** Jubilee contains no
-characterisation section because it is not a metrology paper, and it never claimed to be. It
-succeeded, comprehensively, at what it set out to do. The difficulty is that the machines now
-being built on it have inherited requirements it never promised to meet.
+characterisation section not through oversight but because *it is not a metrology artefact and
+never claimed to be*. Judged on its own terms it succeeded comprehensively: it is extensible,
+it is reproducible, it is genuinely open, and people build real machines with it. The difficulty
+is emergent rather than authorial --- **the machines now being built on it have quietly inherited
+requirements the platform never promised to meet.** A composable medium became an instrument, and
+nobody re-derived what an instrument owes its user.
 
 ## The science stack
 
