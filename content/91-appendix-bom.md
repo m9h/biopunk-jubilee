@@ -29,20 +29,52 @@ standalone RepRapFirmware polls `rr_model` over HTTP and offers no subscription 
 
 | Item | Purpose | Approx. cost |
 |---|---|---|
-| Raspberry Pi 4 | Runs DuetSoftwareFramework; the subscription endpoint for WP1 | \$35–75 |
-| Duet 3 SBC ribbon cable (**26-way at the Duet, 40-way at the Pi**) | Duet-to-Pi link | \$5–10 |
+| Raspberry Pi 4 **or 5** | Runs DuetSoftwareFramework; the subscription endpoint for WP1 | \$35–80 |
+| Duet 3 SBC ribbon cable (**26-way at the Duet, 40-way at the Pi**) | Duet-to-Pi link | **\$0 — bundled with the board**; \$2.99 as a spare |
 | Separate 5 V supply for the Pi | **The Mini 5+ cannot power the Pi** — unlike the 6HC | \$10 |
 
-**Three notes that will otherwise cost a day each.** The Duet-side header is **26-pin** and the
-Pi's is 40-pin, so a generic 40-to-40 Pi GPIO ribbon **will not mate** --- source the Duet part.
-DSF ships as Debian packages from Duet3D's apt repository and expects **Raspberry Pi OS**; a
-non-Debian distribution is an unsupported path and not where an unattended ten-day assay should
-be spending its luck. And **Raspberry Pi 5 support is unconfirmed** --- the Pi 5 moved GPIO and SPI
-behind the RP1 southbridge --- so the Pi 4 is the documented choice until shown otherwise.
+**The cable is not a generic part, and it is probably already in the box.** The Duet-side header
+is a 26-way IDC and the Pi's is 40-way; the cable is wired *straight through*, Pi pins 1--26 to
+Duet pins 1--26. A standard 40-to-40 Raspberry Pi GPIO ribbon --- the kind sold for breakout boards
+--- **cannot mate with the Duet end at all.** Duet3D bundle the correct cable with the board, and
+Filastruder sell it separately for \$2.99. Keep it under $\approx$ 150 mm.
 
-The CSI camera connector is independent of the 40-pin GPIO header, so **one Pi can serve as both
-the Duet SBC and the vision host** --- which puts the object-model subscription and DuckBot's
-camera assertions on the same machine, where they belong.
+**Run DuetPi, not your favourite distribution.** DSF is published only as Debian packages, from
+Duet3D's own apt repository; RPM spec files exist in-tree but are explicitly *"not actively
+maintained,"* so a Fedora or Arch host means self-building packages indefinitely. The sharper
+obstacle is lower down: on a non-Raspberry-Pi-OS distribution, enabling SPI does **not**
+reliably instantiate `/dev/spidev0.0`, which DSF hard-requires --- binding it demands a manual
+`driver_override` incantation wrapped in a systemd unit. DSF also confines plugins with AppArmor,
+which RedHat-family distributions do not ship. **This is the machine that must survive an
+unattended ten-day assay. It is the wrong place to be interesting.**
+
+**Raspberry Pi 5 works**, notwithstanding documentation that still says 3 or 4: Duet3D staff
+confirm compatibility and ship a DuetPi image for it. One known trap --- a kernel change remapped
+the RP1's GPIO chip, so a stale `"GpioChipDevice": "/dev/gpiochip4"` in `/opt/dsf/conf/config.json`
+produces `Failed to open IO device`. Deleting that file lets DCS regenerate it. Prefer a current
+DuetPi Bookworm 64-bit image over a hand-configured stock OS.
+
+## The camera: perception as an assertion device
+
+| Item | Purpose | Approx. cost |
+|---|---|---|
+| On-device-inference camera (Luxonis OAK class) | Deck-level semantic assertions; returns a *predicate*, not an image (Section 31) | \$150–200 |
+| Printed bracket + T-nuts, frame extrusion | Static overhead mount | ~\$0 |
+| **Not** a depth camera | Stereo is blind to transparent and specular labware (Section 50) | — |
+
+The CSI connector is physically independent of the 40-pin GPIO header, and Duet3D ship an
+official **Spyglass** plugin for exactly this configuration, so **one Pi can serve as both the
+Duet SBC and the vision host** --- putting the object-model subscription and the camera assertions
+on the same machine, where they belong. Two caveats: a USB inference camera is power-hungry and a
+Pi's USB3 ports are marginal, so budget a powered hub; and Duet advise disabling Pi WiFi power
+management for SPI-link stability, which makes Ethernet the better choice on a machine also
+streaming video.
+
+**The metrology camera is a different instrument.** WP0 and WP5 need single-digit
+$\mu\mathrm{m}$-per-pixel to resolve a $20\,\mu\mathrm{m}$ figure, which means a small field of
+view and real magnification: a **C-mount macro lens on a high-resolution sensor**, looking up at
+the tool tip, in the manner of TAMV. A wide-FOV scene camera cannot do this at any resolution,
+and should not be asked to.
 
 ## Optional: CAN toolboards
 

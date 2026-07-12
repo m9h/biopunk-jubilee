@@ -13,7 +13,10 @@ slide_summary: |
 
   **`jubilee3d/xyz_probe`** (\$50, already exists, unused) + `G38.2` touches off well A1.
 
-  *Do not buy an eddy-current probe. It cannot see plastic.*
+  Plus: **generalise the camera they already have** --- one overhead frame discharges
+  whole-plate occupancy, where DuckBot rasters at \~1 min/well.
+
+  *No eddy-current probe: blind to plastic. No depth camera: blind to what plastic contains.*
 ---
 
 An assertion layer over a blind machine asserts nothing. This section specifies the minimum
@@ -102,6 +105,47 @@ there is no make/break under load, no risk of breaking a stepper connection unde
 and no exposure to the Stratasys patent [@stratasys2015toolchanger], which claims powered docks
 that *hand off* to the gantry --- not passive identity contacts.
 
+## The sensor they already have, and what it should become
+
+The three sensors above are the ones that do not exist. A camera is the one thing that does ---
+DuckBot ships two --- and the proposal would be incomplete if it did not say what should become of
+it, because a camera is already the ecosystem's only working assertion device (Section 30).
+
+**Generalise it from a predicate to a predicate *engine*.** DuckBot's camera answers exactly one
+question, about one organism, in protocol code: *is there a frond in this well?* The same physical
+device, addressed as a perception tool with a declared set of predicates, could equally discharge
+*is a plate seated in its nest*, *is the tip rack present and full*, *did a tip attach*, and *is
+this well empty when the protocol says it should be full.* These are the deck-level semantic
+assertions of Section 30, and none of them requires new hardware --- only that the camera be
+exposed as an assertion primitive rather than buried in an experiment script.
+
+**Prefer a camera that returns a predicate, not an image.** An on-device inference camera --- the
+Luxonis OAK class, built around a vision accelerator --- runs the network on the camera and returns
+the *result*. This matters architecturally rather than merely conveniently: the Sensor Rule
+demands that an assertion be discharged by a measurement, and such a device's output *is* the
+discharged measurement. It also keeps a perception workload off the single-board computer that,
+after Section 30, is holding the machine's object-model subscription.
+
+**One frame can replace an hour of rastering.** DuckBot images its plates well by well, at roughly
+one minute per well --- 448 images over a ten-day assay [@subbaraman2024duckbot]. But a 12-megapixel
+sensor spans about 4000 pixels. Framed across a whole Jubilee deck ($\approx$ 300 mm), that is
+some 13 px/mm; framed across a single microplate, better than 30 px/mm. A duckweed frond of 3 mm
+is tens of pixels across in either case. **For the occupancy predicate --- which wells contain a
+frond --- a single static overhead frame answers for an entire plate**, where the per-well raster
+spends an hour of machine time to answer the same question.
+
+We state the boundary of that claim precisely, because it is easy to overreach. DuckBot's per-well
+imaging exists for *growth quantification* --- frond area over time --- and that is a measurement, not
+an assertion; it plausibly needs the magnification and we do not propose to remove it. The claim
+is narrow: **an overhead perception camera discharges deck-level assertions cheaply. It does not
+replace the assay's imaging.**
+
+**Occlusion is not a problem; it is an argument.** A camera above a Jubilee deck looks through the
+gantry and the mounted tool. The answer is not to mount off-axis and rectify, but to capture *when
+the deck is clear* --- which requires knowing that a motion completed and the gantry has parked.
+That is precisely the handshake WP1 exists to build. A machine that cannot confirm a move has
+finished cannot even take a clean photograph of its own deck.
+
 ## What we deliberately do not add
 
 **No eddy-current probe.** The modern probing advance (Beacon, Cartographer, BTT Eddy) works by
@@ -109,6 +153,24 @@ inducing currents in a **conductor** and is physically blind to plastic. A Delri
 plate, a tip rack, a Petri dish does not exist to these sensors: they read the aluminium
 *through* the labware or fail to trigger and drive the tool into it. Two of the three do not run
 on RepRapFirmware at all.
+
+**No depth camera** --- and the reason rhymes with the one above, which is why we state them
+together. Stereo depth, including active stereo with an infrared dot projector, must correlate a
+*diffuse, opaque, textured* surface. A laboratory deck is transparent well plates, clear
+polypropylene tips, glossy plastic, and liquid. **A meniscus is close to the worst target stereo
+can be given**: it is transparent and specular, so the projected pattern scatters or mirrors
+rather than landing on it. Two fashionable sensors, two unrelated physics, defeated by the same
+deck --- one blind to plastic, the other blind to what plastic contains (Section 50).
+
+The geometry is decisive independently of the optics. Stereo depth resolves to roughly 1--2\% of
+range, which is millimetres at any working distance over a Jubilee deck. Tool seating is a
+micron-scale question, and a continuity switch answers it for nothing. The registration assertion
+we actually want --- *is this plate a millimetre out of its nest* --- requires resolving comfortably
+inside a millimetre, so millimetre-class depth sits exactly at the noise floor of the effect it
+is supposed to detect. And tool-change repeatability is a $20\,\mu\mathrm{m}$ question, three
+orders of magnitude away. **Every assertion needing sub-millimetre precision is beyond stereo's
+reach, and every assertion within its reach is already answerable in two dimensions.** Depth
+purchases nothing this machine needs.
 
 **Use contact probing instead --- which Jubilee already has and does not use.**
 `jubilee3d/xyz_probe` is a \$50 kinematically-coupled touch probe that reaches 38 mm into a

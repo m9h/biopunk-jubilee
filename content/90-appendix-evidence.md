@@ -95,7 +95,31 @@ Section 50).
 | Mini 5+ driver count vs Jubilee motor count | **5 drivers** vs **6 motors** (X, Y, 3×Z, U tool-lock) — U must go on an expansion board | **[M]** |
 | CAN limitation | main-board endstops cannot control expansion-board motors | **[M]** (Duet CAN limitations doc) |
 | Mini 5+ can power an attached Pi | **no** — unlike the 6HC, the Pi needs its own supply | **[M]** (SBC setup doc) |
-| Raspberry Pi 5 support under DSF | **unconfirmed**; Pi 5 moved GPIO/SPI behind the RP1 southbridge. Pi 4 is the documented path | **[N]** |
+| Raspberry Pi 5 support under DSF | **works** — confirmed by Duet3D staff; a DuetPi image ships for it. Docs still say "3 or 4" and are **stale**. Known trap: a stale `GpioChipDevice: /dev/gpiochip4` after the RP1 kernel remap | **[M]** (Duet forum, staff) |
+| Duet-to-Pi SBC cable | 26-way at the Duet, 40-way at the Pi, **straight through** (Pi pins 1–26). **Bundled with the board**; \$2.99 as a spare. A generic 40-to-40 Pi ribbon **cannot mate** | **[M]** |
+| DSF on a non-Debian host (Fedora, Arch) | **unsupported.** `.deb` only from `pkg.duet3d.com`; in-tree RPM specs are "not actively maintained." `/dev/spidev0.0` does not reliably bind; AppArmor absent on RedHat-family | **[M]** |
+| CSI camera coexisting with DSF on one Pi | **supported** — no pin or bus contention (CSI is a separate connector); Duet3D ship the **Spyglass** plugin for precisely this | **[M]** |
+
+## Perception and depth
+
+| Claim | Finding | Grade |
+|---|---|---|
+| Stereo depth range resolution | $\approx$ 1–2\% of range — **millimetres** over a Jubilee deck | **[C]** (vendor class figure) |
+| Depth vs the assertions we need | tool seating (µm), tool-change repeatability (20 µm), labware registration (sub-mm) are **all beyond stereo's reach**; plate-present and well-occupied are **already 2D questions** | **[D]** |
+| Stereo on transparent / specular targets | fails — including active IR stereo. **A meniscus is the adversarial case**: the pattern passes through or mirrors away | **[D]**, from the operating principle |
+| Whole-plate occupancy in one frame | a 12 MP sensor gives $\approx$ 13 px/mm across a 300 mm deck, $>$ 30 px/mm across one microplate; a 3 mm frond spans tens of pixels | **[D]** |
+| DuckBot per-well imaging cost | $\approx$ 1 min/well; 448 images over a ten-day assay | **[M]** (paper) |
+
+**A boundary we are careful not to cross.** The one-frame claim covers the *occupancy assertion*
+only. DuckBot's per-well imaging exists for growth quantification --- frond area over time --- which
+is a measurement, not an assertion, and plausibly needs the magnification. We propose to add an
+assertion device, not to remove an instrument.
+
+**A third correction made during drafting.** An earlier version of this appendix graded Raspberry
+Pi 5 support as **[N]**, on the strength of Duet's own documentation, which still says "Raspberry
+Pi 3 or 4." The documentation is stale: Duet3D staff confirm the Pi 5 works and ship an image for
+it. We had also budgeted \$5--10 for a cable that is bundled with the board. Both are recorded
+here rather than silently amended, on the same principle as the two corrections above.
 
 **A second claim we corrected during drafting.** Earlier versions specified the transport as a
 "websocket subscription to the Duet object model," on the strength of a commented-out import in
