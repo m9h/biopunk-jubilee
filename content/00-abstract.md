@@ -9,10 +9,10 @@ slide_summary: |
 
   - No completion handshake. No seating check. No liquid-level sensing.
   - Every failure is **silent** --- and silence corrupts data rather than halting it.
-  - The same lab already built the fix: **Tandem** (CHI 2024). It was wired to a
-    milling machine, never to the science machines.
+  - The same lab already built the fix: **Tandem** (CHI 2024) --- wired to a milling
+    machine, never to the science machines.
 
-  **Proposal.** Port Tandem's assertions into `science-jubilee` --- and add the three
+  **Proposal.** Port Tandem's assertions into `science-jubilee`, and add the three
   sensors that make them non-vacuous.
 ---
 

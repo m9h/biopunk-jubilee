@@ -6,23 +6,20 @@ status: draft
 title: "Architecture: An Assertion Layer with Teeth"
 slide_summary: |
   ```
-  +-- Protocol (Jupyter / Tandem notebook) -------------+
+  +-- Protocol (Tandem notebook) -----------------------+
   |   with machine.asserting():                         |
   |       machine.pickup_tool(p300)  # asserts seating  |
   |       p300.aspirate(200, well)   # asserts meniscus |
-  +-----------------------------------------------------+
-  +-- Assertion layer   (NEW) --------------------------+
+  +-- Assertion layer  (NEW) ---------------------------+
   |   Precondition -> Action -> Postcond -> Provenance  |
-  +-----------------------------------------------------+
-  +-- Transport   (REWRITTEN) --------------------------+
-  |   Duet object model subscription. M400 default.     |
-  |   Firmware faults -> catchable Python exceptions.   |
+  +-- Transport  (REWRITTEN) ---------------------------+
+  |   Object-model subscription. M400 by default.       |
+  |   Firmware faults -> catchable exceptions.          |
   +-----------------------------------------------------+
   ```
 
-  **The Sensor Rule:** *every assertion must be backed by a sensor, not a variable.*
-
-  *A real subscription needs an SBC. Standalone RRF only polls `rr_model`.*
+  **The Sensor Rule:** *every assertion is backed by a sensor, not a variable.*
+  A real subscription needs an **SBC** --- standalone RRF only polls `rr_model`.
 ---
 
 We propose three layers. The top is a protocol expressed as a Tandem notebook; the middle is a

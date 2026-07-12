@@ -1,5 +1,9 @@
-RINF ?= /home/mhough/dev/research-infra/.venv/bin/rinf
+RINF ?= $(shell command -v rinf 2>/dev/null || echo ../research-infra/.venv/bin/rinf)
 OUT  := manuscript/output
+
+# We build with tectonic, not a full TeX Live. research-infra honours this.
+export RINF_PDF_ENGINE ?= tectonic
+LATEX ?= tectonic -X compile
 
 .PHONY: all manuscript slides check clean
 
@@ -28,9 +32,11 @@ check: all
 	@tmp=$$(mktemp -d); cp $(OUT)/slides.md $$tmp/; \
 	 (cd $$tmp && pandoc slides.md --from markdown --to beamer --slide-level=2 \
 	    -V aspectratio=169 -s -o s.tex 2>/dev/null && \
-	  xelatex -interaction=nonstopmode s.tex >/dev/null 2>&1; \
-	  grep -oE 'Overfull .vbox \([0-9.]+pt too high\)' s.log | sed 's/^/   /' || echo "   none"); \
+	  $(LATEX) s.tex --outfmt pdf 2>&1 \
+	    | grep -oE 'Overfull .vbox \([0-9.]+pt too high\)' | sort -u | sed 's/^/   /' \
+	    || echo "   none"); \
 	 rm -rf $$tmp
+	@echo "   (note: the metropolis title page reports ~45pt regardless of title length --- cosmetic, pre-existing)"
 	@echo "OK"
 
 clean:

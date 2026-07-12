@@ -8,15 +8,13 @@ slide_summary: |
   | Sensor | What it asserts | Cost | Status |
   |---|---|---|---|
   | **Coupler continuity** | the tool seated | ~\$0 | *exists* --- as an E-stop |
-  | **Pressure LLD** | where the meniscus is | ~\$30 | **nobody has built this** |
+  | **Pressure LLD** | where the meniscus is | ~\$30 | **unbuilt in the open** |
   | **Dock tool ID** | the right tool is mounted | ~\$5--20 | resistor or RFID |
 
-  **`jubilee3d/xyz_probe`** (\$50, already exists, unused) + `G38.2` touches off well A1.
-
   Plus: **generalise the camera they already have** --- one overhead frame discharges
-  whole-plate occupancy, where DuckBot rasters at \~1 min/well.
+  whole-plate occupancy; DuckBot rasters at \~1 min/well.
 
-  *No eddy-current probe: blind to plastic. No depth camera: blind to what plastic contains.*
+  *No eddy-current probe: blind to plastic. No depth camera: blind to what it holds.*
 ---
 
 An assertion layer over a blind machine asserts nothing. This section specifies the minimum
