@@ -84,6 +84,28 @@ Section 50).
 | `tandem` repo | CC BY 4.0; last push December 2024; 4 stars | **[M]** |
 | Shared labware schema | both projects consume **Opentrons schema v2** | **[M]** |
 
+## Firmware and controller (verified against RRF source, not prose docs)
+
+| Claim | Finding | Grade |
+|---|---|---|
+| Object-model **subscription** in standalone RRF | **does not exist.** DWC polls `GET rr_model` on a 250 ms timer (`PollConnector.ts`); the websocket path (`RestConnector.ts`) requires DuetWebServer, i.e. **SBC mode** | **[M]** (Duet3D `Connectors` source) |
+| Push subscription mechanism | DSF over the DCS socket, `"mode": "Subscribe"` with patch deltas and per-update acknowledge; wrapped by `dsf-python` | **[M]** |
+| `M950 J` general-purpose input | **digital only** — `GpInputPort::GetState()` calls `port.ReadDigital()`; `sensors.gpIn[].value` is 0 or 1 | **[M]** (`src/GPIO/GpInPort.cpp`) |
+| Analogue-capable pins, Duet 3 Mini 5+ | `io3.in`, `io6.in`, `temp0–2` only; all other `ioN.in` are digital | **[M]** (`Pins_Duet3Mini.h`) |
+| Mini 5+ driver count vs Jubilee motor count | **5 drivers** vs **6 motors** (X, Y, 3×Z, U tool-lock) — U must go on an expansion board | **[M]** |
+| CAN limitation | main-board endstops cannot control expansion-board motors | **[M]** (Duet CAN limitations doc) |
+| Mini 5+ can power an attached Pi | **no** — unlike the 6HC, the Pi needs its own supply | **[M]** (SBC setup doc) |
+| Raspberry Pi 5 support under DSF | **unconfirmed**; Pi 5 moved GPIO/SPI behind the RP1 southbridge. Pi 4 is the documented path | **[N]** |
+
+**A second claim we corrected during drafting.** Earlier versions specified the transport as a
+"websocket subscription to the Duet object model," on the strength of a commented-out import in
+`Machine.py`. Checked against RepRapFirmware and Duet's own connector library, **standalone RRF
+has no such subscription** --- it has HTTP polling. The subscription is real, but it lives in
+DuetSoftwareFramework and requires an attached Raspberry Pi. WP1 therefore acquires a hardware
+prerequisite it did not previously declare, and the bill of materials acquires a Pi (Appendix 91).
+Had we not checked, the single largest software claim in the proposal would have failed in its
+first week.
+
 ## Liquid-handling physics
 
 | Quantity | Value | Grade |

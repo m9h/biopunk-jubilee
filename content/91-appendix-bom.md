@@ -19,7 +19,30 @@ title: "Bill of Materials and Configuration Notes"
 | Load cell + HX711/ADS1220 (stretch) | Preloaded bed as universal touch-off surface | \$15–40 |
 
 **Total for the core sensing work: well under \$150.** This is the entire hardware cost of the
-proposal, against a \$1,800 machine.
+*sensing*, against a \$1,800 machine.
+
+## Required: the SBC, without which WP1 is not possible
+
+Not a sensor, and easy to omit from a sensing BOM --- which is exactly why it is called out
+separately. A genuine Duet object-model subscription exists **only in SBC mode** (Section 30);
+standalone RepRapFirmware polls `rr_model` over HTTP and offers no subscription at all.
+
+| Item | Purpose | Approx. cost |
+|---|---|---|
+| Raspberry Pi 4 | Runs DuetSoftwareFramework; the subscription endpoint for WP1 | \$35–75 |
+| Duet 3 SBC ribbon cable (**26-way at the Duet, 40-way at the Pi**) | Duet-to-Pi link | \$5–10 |
+| Separate 5 V supply for the Pi | **The Mini 5+ cannot power the Pi** — unlike the 6HC | \$10 |
+
+**Three notes that will otherwise cost a day each.** The Duet-side header is **26-pin** and the
+Pi's is 40-pin, so a generic 40-to-40 Pi GPIO ribbon **will not mate** --- source the Duet part.
+DSF ships as Debian packages from Duet3D's apt repository and expects **Raspberry Pi OS**; a
+non-Debian distribution is an unsupported path and not where an unattended ten-day assay should
+be spending its luck. And **Raspberry Pi 5 support is unconfirmed** --- the Pi 5 moved GPIO and SPI
+behind the RP1 southbridge --- so the Pi 4 is the documented choice until shown otherwise.
+
+The CSI camera connector is independent of the 40-pin GPIO header, so **one Pi can serve as both
+the Duet SBC and the vision host** --- which puts the object-model subscription and DuckBot's
+camera assertions on the same machine, where they belong.
 
 ## Optional: CAN toolboards
 
@@ -61,7 +84,17 @@ defeats the entire purpose.
 - **`driver-error.g` / `driver-warning.g`** macros wired to park, alert, and re-home — *not* to
   halt.
 - **`M950 J...`** to expose the coupler-continuity input as a queryable general-purpose input,
-  visible in the object model via `M409`.
+  visible in the object model via `M409`. **This is a digital port and only a digital port** ---
+  RRF's `GpInputPort::GetState()` performs a digital read and `sensors.gpIn[].value` is 0 or 1.
+  Continuity is a digital signal, so Sensor 1 is served correctly.
+- **`M308 ... Y"linear-analog"` for the tool-ID resistor**, *not* `M950 J`, which cannot return
+  an analogue value. It must land on an ADC-capable pin: on a Duet 3 Mini 5+ those are `io3.in`,
+  `io6.in`, `temp1` and `temp2`. **`temp1`/`temp2` are the clean choice** on a Jubilee whose
+  heaters live on toolboards, since they are otherwise unused and they leave both analogue-capable
+  `io` pins free.
+- **Put the tool-lock (U) endstop on the same board as the tool-lock motor.** The Mini 5+'s five
+  drivers are consumed by X, Y and three Z motors, so U lands on an expansion board --- and RRF
+  cannot use a main-board endstop to control an expansion-board motor.
 - **Tool-state interlock** so `G32` refuses to execute with a tool mounted (issue #116).
 - **`G38.2` / `M585`** for labware touch-off.
 - **`M260.1` / `M261.1`** — Modbus RTU over RS-485, if pumps, valves, or balances are to be

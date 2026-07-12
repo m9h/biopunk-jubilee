@@ -15,12 +15,14 @@ slide_summary: |
   |   Precondition -> Action -> Postcond -> Provenance  |
   +-----------------------------------------------------+
   +-- Transport   (REWRITTEN) --------------------------+
-  |   Duet object model over websocket. M400 default.   |
+  |   Duet object model subscription. M400 default.     |
   |   Firmware faults -> catchable Python exceptions.   |
   +-----------------------------------------------------+
   ```
 
   **The Sensor Rule:** *every assertion must be backed by a sensor, not a variable.*
+
+  *A real subscription needs an SBC. Standalone RRF only polls `rr_model`.*
 ---
 
 We propose three layers. The top is a protocol expressed as a Tandem notebook; the middle is a
@@ -81,10 +83,30 @@ bare `except` and a `sleep`.
 
 **What we propose.**
 
-- **Subscribe to the Duet object model over websocket.** The import is already present in
-  `Machine.py`, commented out. This gives continuous, structured machine state --- axis
-  positions, tool state, endstop and probe status, driver faults --- instead of string-parsing
-  `M114` replies.
+- **Subscribe to the Duet object model --- which requires an SBC, and this is not optional.**
+  Continuous, structured machine state (axis positions, tool state, endstop and probe status,
+  driver faults) replaces string-parsing `M114` replies. But the mechanism matters, and the
+  obvious reading of "websocket" is wrong.
+
+  **RepRapFirmware in standalone mode has no object-model subscription.** Its HTTP API is the
+  `rr_*` endpoints only; Duet Web Control obtains state by *polling* `rr_model` on a timer.
+  Duet's own connector library makes the split explicit: `PollConnector.ts` --- the standalone
+  path --- issues `rr_connect` and then loops on `GET rr_model` at a 250 ms default interval,
+  while `RestConnector.ts`, the only one that opens a websocket, connects to DuetWebServer and
+  therefore succeeds **only in SBC mode**. A genuine push subscription, with patch deltas and a
+  per-update acknowledge handshake, is a DuetSoftwareFramework facility on an attached
+  Raspberry Pi, exposed over the DCS socket and wrapped by `dsf-python`.
+
+  We therefore specify **SBC mode --- a Raspberry Pi attached to the Duet --- as a requirement of
+  this proposal**, not an implementation detail. It adds a Pi, a ribbon cable, and a separate 5 V
+  supply (the Mini 5+, unlike the 6HC, *cannot* power the Pi) to the bill of materials.
+
+  **The standalone fallback, stated honestly.** Where an SBC is unavailable, polling
+  `rr_model?key=seqs` --- a small sequence-number object --- and re-fetching only the keys whose
+  sequence advanced is far better than the present transport, and is what DWC does. It delivers
+  structured state and, with `M400`, a real completion guarantee. It is *not* a subscription, it
+  carries a poll-interval latency floor, and the `rr_connect` session times out after seconds of
+  inactivity. We do not call it one.
 - **Make motion completion the default, not an option.** `M400` is emitted for every motion
   primitive unless a caller explicitly opts into pipelining. The Hawai'i group's workaround of
   "long pauses after each dip" [@vierra2025dipcoating] should become unnecessary and, more
