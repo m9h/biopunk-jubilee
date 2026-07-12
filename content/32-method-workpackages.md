@@ -44,11 +44,17 @@ sensing work. If it does not, we have located the problem before spending anythi
 
 ## WP1 --- Transport (3 weeks)
 
-Replace the blocking HTTP shim. Subscribe to the Duet object model over websocket; default
-`M400` on every motion primitive; surface RRF driver and heater events as typed Python
-exceptions; wire `driver-error.g` and `driver-warning.g` to hooks that pause, park, and alert
-rather than halt. Retain `simulated=True` and make it faithful enough to test against, which it
-currently is not.
+Replace the blocking HTTP shim. Subscribe to the Duet object model; default `M400` on every
+motion primitive; surface RRF driver and heater events as typed Python exceptions; wire
+`driver-error.g` and `driver-warning.g` to hooks that pause, park, and alert rather than halt.
+Retain `simulated=True` and make it faithful enough to test against, which it currently is not.
+
+**This work package has a hardware prerequisite, and it is easy to miss.** A real object-model
+subscription requires **SBC mode**: a Raspberry Pi attached to the Duet, running
+DuetSoftwareFramework, addressed from Python via `dsf-python`. Standalone RepRapFirmware offers
+no subscription --- only HTTP polling of `rr_model` (Section 30). Provision the Pi, the ribbon
+cable, and its separate power supply *before* WP1 begins, or the work package will be discovered
+to be impossible in its first week.
 
 **Acceptance:** a protocol issuing 10,000 queued moves completes with no lost commands and no
 `sleep()` anywhere in the caller's code; a deliberately induced stall raises a catchable
@@ -72,6 +78,15 @@ record contains a verified entry for every tool change and every dispense.
 Promote the existing crash-detection modification to a queryable input; check it on every
 pickup; implement bounded re-seat-and-retry. Add the firmware-side tool-state interlock that
 issue #116 has requested since 2021, so that `G32` cannot execute with a tool mounted.
+
+**Two firmware constraints to design around, both discovered late by anyone who does not read
+them first.** Coupler continuity is a digital read and is correctly an `M950 J` general-purpose
+input --- but **`M950 J` is digital-only**, so the *analogue* tool-ID of Section 31 cannot use it
+and must be an `M308` `linear-analog` sensor on an ADC-capable pin (Appendix 91). And on a Duet 3
+Mini 5+, whose five drivers are consumed by X, Y and three Z motors, the U tool-lock axis lands
+on an expansion board --- where RRF's CAN limitation bites: *endstops connected to the main board
+cannot control motors on an expansion board.* The tool-lock endstop must therefore live on the
+same board as the tool-lock motor. This is precisely the interlock WP3 exists to build.
 
 **Acceptance:** a deliberately fouled parking post produces a logged, recovered mis-seat rather
 than a silent one --- and, after exhausting retries, a parked machine and an alert rather than a
