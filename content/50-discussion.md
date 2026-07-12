@@ -77,6 +77,39 @@ $12\,\mu\mathrm{m}/^\circ$C.
 Contact probing is the correct technology, and Jubilee already owns it: `jubilee3d/xyz_probe`
 plus RRF's `G38.2`.
 
+## Why not a depth camera?
+
+The eddy-current argument has a twin, and the pair is more instructive than either alone.
+
+An RGB-D camera is the reflexive answer to "the machine cannot see its own deck," and it is
+cheap, well-supported, and wrong. Stereo depth --- including *active* stereo, which projects an
+infrared dot pattern precisely to solve this --- recovers range by correlating a textured, diffuse,
+**opaque** surface between two views. The objects on a laboratory deck are the adversarial case
+for that assumption: transparent well plates, clear polypropylene tips, glass, glossy plastic,
+and free liquid surfaces. **A meniscus is the worst target in the room.** It is transparent, so
+the pattern passes through it; it is specular, so what does not pass through is mirrored away.
+The projector's dots land on the *bottom of the well*, or on the bench, or nowhere.
+
+So we have two sensors, drawn from two entirely different physical principles, that the
+open-hardware world currently regards as the state of the art in machine perception --- and a
+laboratory deck defeats both, for opposite reasons. **The eddy-current probe is blind to plastic.
+The depth camera is blind to what the plastic contains.** A deck is nothing but plastic and its
+contents.
+
+Even granting perfect optics, the numbers exclude it. Consumer stereo resolves range to
+approximately 1--2\%, which over a Jubilee deck is millimetres. Tool seating is a micron-scale
+event, answered for free by a continuity switch. Labware registration --- the assertion that a
+plate is *not* a millimetre out of its nest --- demands resolution well inside a millimetre, placing
+millimetre-class depth at the noise floor of the very defect it is meant to catch. Tool-change
+repeatability lives at $20\,\mu\mathrm{m}$, three orders of magnitude out of range. Every
+assertion that needs sub-millimetre precision is unreachable by depth, and every assertion depth
+*could* reach --- is a plate present, is a well occupied --- is already a two-dimensional question
+that a plain camera answers (Section 31).
+
+What a camera should contribute here is not geometry but **semantics**: a predicate, computed on
+the device, about the state of an experiment. That is the contribution we do want, and it needs
+no depth at all.
+
 ## Why not migrate to Klipper?
 
 Klipper has the livelier toolchanger ecosystem and a genuinely better resonance-measurement
