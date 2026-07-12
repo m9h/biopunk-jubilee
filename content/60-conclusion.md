@@ -10,7 +10,8 @@ slide_summary: |
   1. **Measure the machine first.** It is free, and it may end half this project.
   2. **Give the transport a completion handshake** and real exceptions.
   3. **Port Tandem's assertions** --- and back every one with a *sensor*, not a variable.
-  4. **Build the pressure LLD nobody has built.** It is DuckBot's own root cause.
+  4. **Build the pressure LLD nobody has built.** It closes one of the two
+     sensitivities DuckBot reports --- the one that is a *sensing* failure.
 
   ### The ask
 
@@ -32,8 +33,10 @@ it is an HCI artefact, published at an HCI venue, optimising for extensibility.
 But the machines built on it have acquired requirements the platform never promised. And when
 every one of their limitations is chased to its root, they converge on a single failure class.
 The machine cannot detect a mis-seated tool. It cannot confirm that a motion completed. It
-cannot find a liquid surface. It cannot feel a crash without dying. It cannot assert that the
-physical world matches the program's model of it. **The machine is not imprecise. It is blind.**
+cannot find a liquid surface. It cannot feel a crash without dying. It has no primitive with
+which to assert that the physical world matches the program's model of it --- and so, where a team
+has needed such an assertion badly enough, it has hand-built one for a single organism and left
+every other failure class unwatched. **The machine is not imprecise. It is blind.**
 
 That reframing is the proposal's principal intellectual contribution, because it disqualifies
 almost every upgrade the surrounding literature would recommend. A stiffer gantry addresses an

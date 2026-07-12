@@ -24,10 +24,17 @@ Python control layer is a synchronous G-code-over-HTTP shim that cannot confirm 
 completed, cannot detect that a tool failed to seat, and cannot find a liquid surface.
 
 We argue that these are not three unrelated defects but a single one: **the machine has no
-mechanism for asserting that the physical world matches the program's model of it.** Every
+primitive for asserting that the physical world matches the program's model of it.** Every
 resulting failure is therefore silent. A mis-seated tool does not raise an error; it produces
 a plate of quietly corrupted data. This is the precise failure mode that renders unattended,
 multi-day biological assays --- the platform's central use case --- untrustworthy.
+
+**That the demand is real is demonstrated by the platform's own flagship.** DuckBot already
+verifies its transfers with a camera and retries the wells that failed --- a hand-rolled
+precondition-action-postcondition loop, written in protocol code because no reusable one exists.
+It is built for one organism and one predicate, and it leaves tool seating, tip attachment,
+labware registration, and dispensed volume entirely unchecked. Every team reinvents the
+assertion, narrowly, and the general failures stay silent.
 
 **The diagnosis is not ours, and we do not claim it.** It belongs to the community we address.
 *The End of GCode* --- Jake Read's 2026 MIT dissertation, supervised by Gershenfeld with **Nadya

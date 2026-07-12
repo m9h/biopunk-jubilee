@@ -201,3 +201,34 @@ measured, not assumed.
 **We may be wrong about pressure LLD being unbuilt.** We searched and found nothing. If it
 exists, the correct response is to adopt it, and we would rather be corrected early than
 duplicate work.
+
+**Part of the assertion layer has already been built, by hand, in DuckBot.** Its camera-based
+confirm-and-retry loop [@subbaraman2024duckbot] satisfies the Sensor Rule and anticipates the
+pattern we propose. We treat this as evidence of demand rather than as refutation --- the loop is
+bespoke, single-predicate, and unavailable to any other tool --- but a reader who regards the
+generalisation of an existing loop as a modest contribution is not being unreasonable, and we
+would rather state the objection than have it stated for us. Section 30 gives the full argument.
+
+**The demand for throughput automation may not exist in the community we address.** This is the
+objection we find hardest to answer, and it comes from the same laboratory. De Lange, Dunn and
+Peek report that automated liquid handling in community biolabs shows "enthusiasm outstrips
+applications": seven of eleven labs *owned* a liquid handler, most often an Opentrons OT-2, and
+yet actual use was minimal [@delange2022biolabs]. One participant's diagnosis is direct --- "we
+have so many one-offs that it hasn't rewarded making something that's highly repeatable" --- and
+others cited difficulty of setup, use, and maintenance, and a simple lack of bench space.
+
+**No assertion layer fixes a throughput problem that does not exist.** If the work is one-offs,
+a robot is the wrong instrument regardless of how well it verifies itself, and we do not argue
+otherwise.
+
+Two things nonetheless survive the objection, and we rest on them rather than on any claim of
+latent demand. First, *the barriers participants actually named* --- setup, use, and above all
+maintenance --- are trust barriers, and an instrument that cannot report whether it did what it was
+told is precisely an instrument that is expensive to maintain confidence in. Second, and more
+importantly, **the community biolab is not the only recipient.** DuckBot, FungiBot and the
+Sonication Station are academic research instruments running multi-day assays under exactly the
+conditions where verification pays, and the self-driving-laboratory literature that has adopted
+Jubilee is not throughput-indifferent at all. We therefore scope the claim: this proposal is
+addressed to *unattended, multi-day, protocol-driven work on Jubilee-derived instruments*,
+wherever it occurs. Where the work is genuinely a one-off performed by a person standing at the
+bench, we make no case for it.

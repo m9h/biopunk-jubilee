@@ -47,6 +47,32 @@ exists; the absence is itself the finding. **[D]** = derived by us from primary 
 | Significance testing | *"no significance tests were performed"* | **[N]** |
 | Imaging throughput | ~1 min per well; 64 wells × 10 days = 448 images | **[M]** |
 | Volume model | `dv = vol * self.mm_to_ul` — one linear scalar | **[M]** (source) |
+| Syringe transfer sensitivities, as reported | **two**: z-height of the water column **and** xy-centring over the frond | **[M]** (paper) |
+| *Spirodela polyrhiza* transfer failure, attributed cause | **morphology** — "heavy, multi-frond ramets and entangled root systems" — *not* z-height | **[M]** (paper) |
+| Camera-based confirm-and-retry loop | **exists** — postcondition discharged by camera, empty wells re-attempted, "repeated indefinitely" | **[M]** (paper, Fig. 7) |
+
+**A claim we withdrew during drafting.** Earlier versions of this proposal asserted that
+liquid-level detection was "DuckBot's root cause" and its "dominant failure mode." Checked
+against the primary source, that is **not supported**. DuckBot reports *two* sensitivities, only
+one of which is a liquid-level problem, and attributes its catastrophic species result to neither
+of them. The narrow claim — pressure LLD closes the z-position sensitivity — is what the evidence
+supports, and it is the only one now made. See Sections 10 and 21.
+
+## The community-biolab premise
+
+| Claim | Status | Grade |
+|---|---|---|
+| Equipment **cost** is the binding constraint on community biolabs | **contradicted** — "the cost of commercial lab equipment is not a major constraint"; equipment is donated or second-hand, and *overabundant* | **[M]** [@delange2022biolabs] |
+| Community biolabs need throughput automation | **not supported** — 7 of 11 labs own a liquid handler; usage is minimal; "so many one-offs that it hasn't rewarded making something that's highly repeatable" | **[M]** [@delange2022biolabs] |
+| The binding constraints are **time and skill** | supported — users "almost always hobbyists"; biowork is time-consuming *and* time-sensitive | **[M]** [@delange2022biolabs] |
+| Named barriers to using the robots labs already own | difficulty of **setup, use, and maintenance**; lack of bench space | **[M]** [@delange2022biolabs] |
+| Community biolabs are this proposal's primary beneficiary | **we do not claim this.** The proposal is scoped to unattended, multi-day, protocol-driven work on Jubilee-derived instruments, wherever it occurs | **[D]** |
+
+This is a survey of eleven labs and sixteen participants and it is the best evidence available;
+it is also the *only* such evidence, and it should not be over-read. But it runs against the
+frugality motivation that open lab-automation work reflexively adopts, and we have rewritten our
+own motivation to match it rather than around it (Section 10, and Threats to Validity in
+Section 50).
 
 ## Software
 
