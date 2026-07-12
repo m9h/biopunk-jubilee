@@ -70,7 +70,7 @@ axis, detected by a flexure and a limit switch [@subbaraman2024duckbot]. That is
 applied. It forecloses the pressure-sensing path unless the sensor is isolated from the
 seating transient.
 
-## Liquid-level detection, and why its absence is DuckBot's root cause
+## Liquid-level detection, and the half of DuckBot's failure that it explains
 
 Two independent LLD technologies are standard in serious instruments, both documented by
 Hamilton [@pochert2000lld]:
@@ -99,8 +99,26 @@ outside of the tip into the next well.** A liquid handler without LLD has a carr
 that no filter tip can fix, because the contamination is on the *outside* of the tip: the wrong
 side of the filter.
 
-DuckBot's reported failure --- transfer "very sensitive to the exact height (z-position) of the
-water column" --- is not a motion defect. **It is an LLD-shaped hole in the system.**
+DuckBot's reported failure is, in part, an LLD-shaped hole in the system --- and it is worth being
+exact about which part, because the paper reports two distinct sensitivities and we can only
+claim one of them.
+
+Syringe transfer was "very sensitive to the exact height (z-position) of the water column in the
+source container, **as well as exact positioning of the syringe over the centre of the frond**"
+[@subbaraman2024duckbot]. The first sensitivity is a liquid-level problem and pressure LLD
+addresses it directly: the machine guesses a depth because it cannot measure one. The second is
+a registration and vision problem, and no meniscus sensor touches it.
+
+The catastrophic case belongs to neither. Success rates "differed greatly among the three species
+we trialed, with almost no successful syringe transfer for *Spirodela polyrhiza*" --- and the
+authors attribute this not to height at all but to morphology: **"This is likely due to the
+heavy, multi-frond ramets and entangled root systems."** A pressure sensor finds a surface. It
+does not untangle a root system.
+
+We therefore make the narrow claim and not the broad one. **LLD closes one of the two
+sensitivities DuckBot reports, and neither of them is the species effect.** The broad claim ---
+that liquid-level detection is DuckBot's root cause --- is not supported by DuckBot's own text, and
+we do not make it.
 
 ## Liquid classes: the twenty parameters a syringe does not have
 

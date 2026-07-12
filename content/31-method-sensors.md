@@ -42,8 +42,9 @@ seating sensor --- a mis-seat means the balls never seated, so the circuit never
 
 ## Sensor 2: Pressure-based liquid-level detection (the unbuilt one)
 
-This is the proposal's most substantive hardware contribution, and it addresses DuckBot's own
-reported root cause.
+This is the proposal's most substantive hardware contribution. It addresses one of the two
+sensitivities DuckBot reports --- the one that is a sensing problem rather than a vision or a
+biology problem (Section 21).
 
 **Why pressure rather than capacitance.** Capacitive LLD requires a conductive tip and a
 conductive liquid, and its signal depends on the vessel's stray capacitance --- making it a
@@ -60,8 +61,8 @@ systems is under 10 ms; at a 100 mm/s descent that corresponds to sub-millimetre
 
 **What it buys, in order of importance.**
 
-- **Meniscus finding**, which eliminates the fixed-depth guess that DuckBot reports as its
-  dominant failure mode.
+- **Meniscus finding**, which eliminates the fixed-depth guess behind the z-position sensitivity
+  DuckBot reports.
 - **Liquid-following**: submerge 1--2 mm and track the surface down during aspiration. This is
   the *actual* fix for carryover, because it minimises the wetted outer tip area --- the
   contamination path that no filter tip can address, since it is on the wrong side of the

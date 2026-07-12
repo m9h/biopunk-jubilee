@@ -38,6 +38,36 @@ passes the guard silently. It is a latent correctness bug, and it is an instruct
 it shows how naturally a verification layer decays into theatre when nothing is measuring
 anything.
 
+## The layer already exists, once, by hand
+
+We must be scrupulous here, because the strongest objection to this proposal is that part of it
+has already been built --- in the very codebase we are proposing to change.
+
+**DuckBot verifies its transfers, and retries them.** Its authors state that each transfer tool
+"can be used as a part of a closed loop wherein transfer success is confirmed using the camera
+tool, and automatically retried on failures," and describe the mechanism: after the first round,
+the camera images each destination plate, identifies the wells that are still empty, and
+initiates a second attempt for those wells, "repeated indefinitely" at a cost in duration
+[@subbaraman2024duckbot].
+
+That is a *precondition, an action, a sensed postcondition, and a bounded recovery.* It satisfies
+the Sensor Rule --- the postcondition is discharged by a camera, not by a variable --- and it is
+precisely the pattern this proposal advocates. We did not invent it and we do not claim it.
+
+**But notice what it took, and what it left uncovered.** The loop is hand-rolled in protocol
+code, for one organism, against one camera, checking one predicate: *is there a frond in this
+well?* It is not reusable, not composable, and not available to any other tool on the machine.
+DuckBot's authors had to write a bespoke verification loop **because the platform offers no
+assertion primitive** --- and having written it, they still shipped a machine whose tool changes,
+tip seating, labware registration, and dispensed volumes go entirely unchecked, because no camera
+is pointed at any of them.
+
+This sharpens the thesis rather than weakening it, and it is worth stating the corrected version
+plainly. It is **not** that Jubilee's machines cannot assert. It is that they have **no assertion
+primitive, so every team reinvents one** --- narrowly, in application code, for whichever single
+failure hurt them most --- while the general failure classes stay silent for want of a sensor and a
+place to hang the check. DuckBot proves the demand. It does not discharge it.
+
 ## Layer 1: Transport
 
 The existing transport is the foundation of the problem, and it must be replaced before any

@@ -7,9 +7,8 @@ title: "The Silent Failure"
 slide_summary: |
   ### The failure that defines the problem
 
-  From the DuckBot paper's own text:
+  From the DuckBot paper's own text --- syringe transfer was
 
-  > "almost no successful syringe transfer for *Spirodela polyrhiza*" --- transfer was
   > "very sensitive to the exact height (z-position) of the water column."
 
   A machine with $\pm 5\,\mu$m repeatability would fail **identically**.
@@ -20,8 +19,8 @@ slide_summary: |
 ---
 
 Consider the failure that the DuckBot paper reports, in its authors' own words: syringe-based
-frond transfer was "very sensitive to the exact height (z-position) of the water column," with
-"almost no successful syringe transfer for *Spirodela polyrhiza*" [@subbaraman2024duckbot].
+frond transfer was "very sensitive to the exact height (z-position) of the water column in the
+source container" [@subbaraman2024duckbot].
 
 It is tempting to read this as a precision problem, and to reach for the remedies the
 open-source printer community has spent the last five years perfecting: a stiffer gantry,
@@ -29,6 +28,14 @@ closed-loop steppers, resonance compensation, an eddy-current probe. Every one o
 remedies would leave this failure completely unchanged. A machine positioning to
 $\pm 5\,\mu\mathrm{m}$ would plunge its needle to exactly the same wrong depth, because the
 depth was never known. **The machine cannot see the liquid.**
+
+We are careful with this example, because the same sentence in DuckBot reports a *second*
+sensitivity --- to "exact positioning of the syringe over the centre of the frond" --- and the
+paper's worst result, "almost no successful syringe transfer for *Spirodela polyrhiza*," is
+attributed by its authors to neither, but to "heavy, multi-frond ramets and entangled root
+systems." Nothing we propose untangles a root system. The z-position sensitivity is the one this
+proposal addresses, and it is enough: it is a failure the machine could have *detected* and did
+not.
 
 This is the paper's thesis in miniature. The Jubilee-derived science machines are not
 meaningfully limited by their motion; they are limited by their inability to observe their own
@@ -109,3 +116,35 @@ What is left after those exclusions is cheap, unglamorous, and load-bearing: a c
 handshake, a seating switch, a pressure sensor, a calibration curve, and an assertion layer.
 This proposal specifies them, situates them in the history of the two fields that produced
 Jubilee, and defines the measurements by which the work should be judged.
+
+## The constraint is not cost. It is attention.
+
+Frugal laboratory automation is routinely motivated by price, and we decline that motivation,
+because the field's own evidence does not support it.
+
+The most direct evidence is a study by the same laboratory. De Lange, Dunn and Peek interviewed
+sixteen members across eleven community biolabs --- half the identified organisations worldwide ---
+and report, as a titled finding, that **"the cost of commercial lab equipment is not a major
+constraint"** [@delange2022biolabs]. Every lab in the sample sourced equipment second-hand or by
+donation, from local biotech firms and university surplus; several participants complained not of
+scarcity but of *overabundance*, and of the space it consumed. DIY equipment, they found, is
+rarely built because a commercial equivalent is unaffordable. It is built because building it is
+meaningful.
+
+What the same study finds *is* binding is time. Community biolab users are "almost always
+hobbyists," for whom lab work is "a minor activity in their lives in terms of time allotment,"
+pursuing biology that is simultaneously time-consuming --- long protocols, long incubations --- and
+time-sensitive, with steps that must occur inside fixed windows. The paper's title is a
+participant's phrase: *short on time and big on ideas*.
+
+This inverts the usual argument for automation, and it sharpens ours. **The scarce resource in
+these laboratories is not money and it is not motion precision. It is human attention** --- and
+attention is exactly what a machine consumes when it cannot be trusted to run unwatched. A
+silent failure does not merely waste a plate. It withdraws the one thing automation was supposed
+to return: the ability to *not be there*. A hobbyist who must sit beside a robot to see whether
+it seated its tool has bought an expensive pipette-holder. A hobbyist who returns on day ten to a
+plate of quietly corrupted data has lost ten days that were never fungible in the first place.
+
+An assertion layer is therefore not a cost-reduction measure. It is what makes an unattended run
+*worth attempting*, and it is aimed at the resource the field has told us, in print, that it
+actually lacks.
