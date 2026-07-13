@@ -10,8 +10,7 @@ slide_summary: |
   1. **Measure the machine first.** It is free, and it may end half this project.
   2. **Give the transport a completion handshake** and real exceptions.
   3. **Port Tandem's assertions** --- and back every one with a *sensor*, not a variable.
-  4. **Build the pressure LLD nobody has built.** It closes one of the two
-     sensitivities DuckBot reports --- the one that is a *sensing* failure.
+  4. **Build the pressure LLD nobody has built.** It closes DuckBot's *sensing* failure.
 
   ### The ask
 
