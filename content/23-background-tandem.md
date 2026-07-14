@@ -114,9 +114,11 @@ Three further gaps are simply unoccupied by either thread:
 2. **The toolchanger has never been characterised.** Not by CBA, not by the Machine Agency, not
    by anyone (Section 40).
 3. **And, most bluntly: the lab machines are still on one-way G-code.** `science-jubilee` drives
-   DuckBot and FungiBot through a synchronous G-code-over-HTTP shim --- *the precise artefact a
-   512-page MIT dissertation, examined by their own principal investigator, is titled against.*
-   The cure was developed, defended, and never administered to the patient in the next room.
+   DuckBot through a synchronous G-code-over-HTTP shim --- *the precise artefact a 512-page MIT
+   dissertation, examined by their own principal investigator, is titled against.* FungiBot is
+   further from feedback still: it is not driven through `science-jubilee` at all, but by a
+   pre-sliced G-code file uploaded to the Duet from a laptop. The cure was developed, defended,
+   and never administered to the patient in the next room.
 
 ## A worked example of the cure not administered: FungiBot
 
@@ -128,6 +130,15 @@ spent coffee grounds. That is about as unruly a feedstock as extrusion has: a li
 particulate, biologically active medium whose rheology varies with grind, moisture, inoculation
 density, and how long it has been sitting. Every one of those varies batch to batch. The machine
 is told its extrusion parameters in advance, and extrudes.
+
+**This is not an inference; it is the published method.** FungiBot's models are designed in
+Rhinoceros and *sliced in PrusaSlicer*, and the print is started by "uploading the G-Code file
+[...] on a laptop computer connected to the Jubilee mainboard via ethernet" [@luo2025fungibot].
+The parameters are therefore fixed at slice time, before the paste is ever loaded. There is no
+runtime channel from the machine back to the program --- not a weak one, none --- and so nothing
+the extruder encounters can change what it does next. Note that this is *not* the
+`science-jubilee` shim we criticise elsewhere: it is a step further from feedback than the shim,
+and it is the control path the flagship biopaste machine actually ships with.
 
 Now read Read's contribution again [@read2024online]. An instrumented extruder fits a pressure
 model *in situ* and **derives** its own flow parameters --- and the paper's own headline claim is

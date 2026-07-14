@@ -58,6 +58,34 @@ one of which is a liquid-level problem, and attributes its catastrophic species 
 of them. The narrow claim — pressure LLD closes the z-position sensitivity — is what the evidence
 supports, and it is the only one now made. See Sections 10 and 21.
 
+## FungiBot
+
+| Quantity | Value | Grade |
+|---|---|---|
+| Motion platform | Jubilee; the extruder is "a toolhead compatible with Jubilee" | **[M]** (paper; Machine Agency project page) |
+| Control path | models in Rhinoceros, **sliced in PrusaSlicer**, print started by "uploading the G-Code file [...] connected to the Jubilee mainboard via ethernet" | **[M]** (paper, 3D-printing workflow) |
+| Driven through `science-jubilee`? | **no** — `science-jubilee` is not used, and is not mentioned in the paper, the repository, or the project page | **[N]** |
+| Runtime feedback channel | **none** — parameters are fixed at slice time | **[M]** (paper) |
+| Motion-platform cost, as reported | \$1500 | **[C]** (paper) |
+| Bed conditioning | printbed covered with waterproof hardboard and lined with a paper towel; printing at "ambient temperature and humidity" | **[M]** (paper) |
+| Incubation | **off-machine** — "Prints are transferred to a container with a lid," sprayed daily, kept in a "thermostatic, low-light corner"; 10-day spawn run | **[M]** (paper) |
+
+**A claim we withdrew during drafting.** Earlier versions of this proposal asserted that
+`science-jubilee` "drives DuckBot **and FungiBot** through a synchronous G-code-over-HTTP shim."
+Checked against the primary source, the FungiBot half is **not supported**: FungiBot is not driven
+through `science-jubilee` at all, but from a statically sliced G-code file uploaded to the Duet.
+The correction *strengthens* the argument of Section 23 rather than weakening it --- the machine
+with the most rheologically unruly feedstock in the corpus has the *least* feedback of any machine
+we examine --- but the original sentence attributed to the wrong artefact, and we do not make it.
+See Sections 00 and 23.
+
+**A consequence for the bill of materials.** No machine in this corpus incubates on the deck:
+DuckBot's plates go to a growth chamber, FungiBot's prints go to a lidded container, and the
+Sonication Station is ambient. A heated bed is therefore not required by any application we
+address, and is contraindicated by the thermal constraints of Section 21 (ISO 8655-6 bounds drift
+during verification at $\le 0.5$ K, and a 3 K gradient across 1 mL of dead air is roughly 10 µL of
+error). Appendix 91 specifies an unheated deck accordingly.
+
 ## The community-biolab premise
 
 | Claim | Status | Grade |
