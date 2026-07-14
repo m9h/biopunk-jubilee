@@ -46,10 +46,12 @@ assertions that flag mismatches between physical and digital state.* The two lin
 met formally --- Read, Peek and Gershenfeld co-authored MAXL in 2023.
 
 **And none of it has been pointed at a laboratory machine.** `science-jubilee` still drives
-DuckBot and FungiBot through a synchronous, one-way G-code-over-HTTP shim --- precisely the
-artefact a 512-page MIT dissertation, examined by their own principal investigator, is titled
-against. The cure was developed, defended, and never administered to the patient in the next
-room.
+DuckBot through a synchronous, one-way G-code-over-HTTP shim --- precisely the artefact a
+512-page MIT dissertation, examined by their own principal investigator, is titled against.
+FungiBot does not even use *that*: a living, batch-variable paste is printed from a statically
+sliced G-code file, uploaded to the mainboard from a laptop, with no runtime channel to the
+machine at all. The cure was developed, defended, and never administered to the patient in the
+next room.
 
 Our delta is correspondingly specific. Read's machines fit continuous **models of their own
 physics** --- nozzle pressure, cutting force, dynamics. A laboratory machine must additionally

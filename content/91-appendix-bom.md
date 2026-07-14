@@ -21,6 +21,31 @@ title: "Bill of Materials and Configuration Notes"
 **Total for the core sensing work: well under \$150.** This is the entire hardware cost of the
 *sensing*, against a \$1,800 machine.
 
+## The deck: specify it unheated
+
+Jubilee inherits an *optional* silicone heater mat, bonded beneath the MIC6 tool plate and driven
+from the Duet's bed-heater output --- a legacy of the platform's descent from tool-changing 3D
+printers. **We specify the plate without it**, and the reason is not merely that it is unnecessary.
+
+*No machine in the corpus incubates on the deck.* DuckBot's plates are carried to a growth chamber
+daily; FungiBot covers the printbed with waterproof hardboard and a paper towel, prints at ambient
+temperature, and *transfers* its prints to a lidded container for a ten-day spawn run
+[@luo2025fungibot]; the Sonication Station is ambient. Nor would a print bed serve as an
+incubator if one tried: it supplies neither humidity, nor air exchange, nor a photoperiod --- and
+a duckweed chamber needs light, not 37 °C.
+
+**And for this proposal specifically, deck heat is an error source, not a null.** Section 21
+records that a 3 K gradient across 1 mL of dead air is roughly 10 µL of error, and that ISO 8655-6
+bounds temperature drift during verification at $\le 0.5$ K. Our headline sensor (WP4) is a
+pressure transducer reading an *air column*; the stretch goal (Section 31) is a *load cell*, whose
+thermal drift is the very defect we cite against inductive probes. A heater beneath the deck
+degrades both.
+
+It costs nothing to defer. The mat is adhesive-backed, the Duet's bed output and `temp0` remain
+free either way (the tool-ID resistor of Section 31 wants `temp1`/`temp2`, so there is no pin
+conflict), and a future tool needing a *temperature-controlled* stage would want a Peltier deck
+insert rather than a print-bed heater regardless.
+
 ## Required: the SBC, without which WP1 is not possible
 
 Not a sensor, and easy to omit from a sensing BOM --- which is exactly why it is called out
